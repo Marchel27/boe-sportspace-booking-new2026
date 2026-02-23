@@ -44,6 +44,10 @@ Route::get('/admin/dashboard/dataLapangan', function () {
     return view('admin.dashboard.dataLapangan');
 })->name('dashboardDataLapangan');
 
+Route::get('/admin/dashboard/edit/editDataLapangan', function () {
+    return view('admin.dashboard.edit.edit_data_lapangan');
+})->name('dashboardEditDataLapangan');
+
 Route::get('/admin/dashboard/jadwalBooking', function () {
     return view('admin.dashboard.jadwalBooking');
 })->name('dashboardJadwalBooking');

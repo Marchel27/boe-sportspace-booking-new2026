@@ -44,13 +44,13 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="relative group">
                             <label class="absolute -top-2.5 left-4 bg-white px-2 text-[11px] font-bold text-blue-600 uppercase tracking-wider z-10">Nama Pemesan</label>
-                            <input type="text" placeholder="Yanto Sholeh" 
-                                class="w-full px-5 py-4 bg-slate-50/50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all duration-300 font-semibold text-slate-700 placeholder:text-slate-300" required>
+                            <input type="text" name="nama" value="Yanto Sholeh" 
+                                class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all duration-300 font-semibold text-slate-700" required>
                         </div>
                         <div class="relative group">
                             <label class="absolute -top-2.5 left-4 bg-white px-2 text-[11px] font-bold text-blue-600 uppercase tracking-wider z-10">WhatsApp</label>
-                            <input type="tel" placeholder="08934678010" 
-                                class="w-full px-5 py-4 bg-slate-50/50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all duration-300 font-semibold text-slate-700 placeholder:text-slate-300" required>
+                            <input type="tel" name="whatsapp" value="08934678010" 
+                                class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all duration-300 font-semibold text-slate-700" required>
                         </div>
                     </div>
 

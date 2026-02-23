@@ -57,6 +57,10 @@
             transform: translateX(0);
             opacity: 1;
         }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
 <body class="flex min-h-screen">
@@ -138,36 +142,57 @@
             </div>
 
             <div class="space-y-6">
-                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 w-full max-w-4xl">
                     <h4 class="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
                         <span class="w-2 h-6 bg-[#1265A8] rounded-full"></span>
                         Booking Request
                     </h4>
                     
-                    <div class="space-y-4">
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-200 transition-colors">
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-[#1265A8]">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    <div id="scrollContainer" class="flex gap-3 overflow-x-auto pb-4 cursor-grab active:cursor-grabbing snap-x snap-mandatory no-scrollbar" style="scrollbar-width: none; -ms-overflow-style: none;">
+                    
+                    @foreach(range(1, 5) as $i)
+                    <div onclick="delayedNavigation(this, '/admin/dashboard/edit/editDataLapangan')" 
+                        class="booking-card min-w-[240px] md:min-w-[260px] p-4 rounded-2xl bg-white border border-slate-100 transition-all duration-500 ease-out snap-center shadow-sm cursor-pointer hover:shadow-md active:scale-95 select-none group relative overflow-hidden">
+                        
+                        <div class="content-wrapper transition-opacity duration-500">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-100 to-blue-50 flex items-center justify-center text-[#1265A8] shadow-sm group-hover:scale-105 transition-transform">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                    </svg>
                                 </div>
                                 <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-bold text-slate-800 truncate">User112233</p>
-                                    <p class="text-xs text-slate-500">Requested tennis court 1</p>
+                                    <p class="text-xs font-black text-slate-800 truncate">User_Pemain_{{ $i }}</p>
+                                    <p class="text-[10px] text-slate-500 font-medium">Tennis Court #{{ $i }}</p>
+                                    <div class="mt-0.5 flex items-center gap-1">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Waiting Approval</p>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="flex gap-2 mt-4">
-                                <button onclick="confirmAction('reject')" 
-                                    class="flex-1 py-2 px-4 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-xs font-bold transition-all transform active:scale-95 shadow-sm shadow-rose-200">
+                                <button onclick="event.stopPropagation(); confirmAction('reject')" 
+                                    class="flex-1 py-2 px-3 bg-rose-50 border border-rose-100 text-rose-500 rounded-xl text-[10px] font-bold uppercase hover:bg-rose-500 hover:text-white transition-colors">
                                     Reject
                                 </button>
-                                
-                                <button onclick="confirmAction('approve')" 
-                                    class="flex-1 py-2 px-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-xs font-bold transition-all transform active:scale-95 shadow-sm shadow-emerald-200">
+                                <button onclick="event.stopPropagation(); confirmAction('approve')" 
+                                    class="flex-1 py-2 px-3 bg-[#1265A8] text-white rounded-xl text-[10px] font-bold uppercase shadow-md shadow-blue-100 hover:bg-[#0d548a] transition-colors">
                                     Approve
                                 </button>
                             </div>
                         </div>
+
+                        <div class="loading-overlay absolute inset-0 bg-white/80 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500 pointer-events-none">
+                            <div class="w-5 h-5 border-2 border-[#1265A8] border-t-transparent rounded-full animate-spin mb-1"></div>
+                            <span class="text-[8px] font-bold text-[#1265A8] uppercase tracking-widest">Loading...</span>
+                        </div>
                     </div>
+                    @endforeach
+
+                </div>
+                    
+                    <p class="text-center text-[10px] text-slate-400 mt-2 font-medium italic">Geser untuk melihat request lainnya •</p>
                 </div>
 
                 <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
@@ -343,6 +368,51 @@
                     console.log(`Action: ${type} dikirim ke server...`);
                 }
             });
+        }
+
+        const slider = document.getElementById('scrollContainer');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.replace('cursor-grab', 'cursor-grabbing');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.classList.replace('cursor-grabbing', 'cursor-grab');
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.classList.replace('cursor-grabbing', 'cursor-grab');
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return; 
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; 
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        function delayedNavigation(element, url) {
+            const content = element.querySelector('.content-wrapper');
+            const overlay = element.querySelector('.loading-overlay');
+
+            content.style.opacity = "0.3";
+            content.style.filter = "blur(1px)";
+
+            overlay.classList.remove('opacity-0');
+            overlay.classList.add('opacity-100');
+
+            setTimeout(() => {
+                window.location.href = url;
+            }, 600);
         }
 
         backToTopBtn.addEventListener('click', () => {
