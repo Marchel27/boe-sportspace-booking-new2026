@@ -68,10 +68,11 @@
                 <p class="text-slate-500 text-sm mt-2 font-medium">Sistem Keamanan Otomatis Aktif</p>
             </div>
 
-            <form action="#" method="POST" class="space-y-6">
+            <form action="{{ route('admin.login') }}" method="POST" class="space-y-6">
+                @csrf
                 <div class="space-y-2">
                     <label class="text-xs font-bold text-slate-500 ml-1 uppercase tracking-widest">Identitas Admin</label>
-                    <input type="text" id="userInput" placeholder="Masukkan Username" 
+                    <input id="userInput" name="username" placeholder="Masukkan Username" 
                             class="w-full px-7 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 focus:bg-white outline-none transition-all text-base font-medium" required>
                 </div>
 
@@ -80,7 +81,7 @@
                         <label class="text-xs font-bold text-slate-500 uppercase tracking-widest">Kata Sandi</label>
                     </div>
                     <div class="relative">
-                        <input id="pwInput" type="password" placeholder="••••••••" 
+                        <input id="pwInput" name="password" type="password" placeholder="••••••••" 
                             class="w-full px-7 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 focus:bg-white outline-none transition-all text-base font-medium" required>
                         
                         <div id="capsLockAlert" class="absolute right-5 top-1/2 -translate-y-1/2 hidden">
@@ -103,7 +104,7 @@
                         <span class="btn-text-cancel inline-block transition-all duration-300">Batal</span>
                     </button>
 
-                    <button type="button" id="btnLogin" onclick="processLogin()" disabled
+                    <button type="button" id="btnLogin" onclick="processLogin()" 
                         class="flex-1 relative py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-2xl opacity-50 cursor-not-allowed transition-all active:scale-[0.98] text-xs tracking-widest uppercase text-center overflow-hidden">
                         
                         <div class="loader-container absolute inset-0 flex items-center justify-center opacity-0 translate-y-4 transition-all duration-300">
@@ -334,22 +335,66 @@
         }
 
         // Fungsi untuk tombol "Ya, Masuk Sekarang" di dalam Modal
-        function finalSubmit(el) {
-            // Tambahkan spinner ke tombol modal
-            el.innerHTML = `
-                <svg class="animate-spin h-4 w-4 text-white inline mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                MEMPROSES...
-            `;
-            el.classList.add('pointer-events-none', 'opacity-80');
-            
-            // Redirect setelah loading singkat
-            setTimeout(() => {
-                window.location.href = "/admin/dashboard/master";
-            }, 1000);
+function finalSubmit(el) {
+    const loginForm = document.querySelector('form');
+    const formData = new FormData(loginForm);
+
+    // Tambahkan spinner ke tombol modal
+    el.innerHTML = `
+        <svg class="animate-spin h-4 w-4 text-white inline mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        MEMPROSES...
+    `;
+    el.classList.add('pointer-events-none', 'opacity-80');
+
+    // Kirim form via fetch
+    fetch(loginForm.action, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+            'Accept': 'application/json',
+        },
+        body: formData
+    })
+    .then(async response => {
+        const data = await response.json(); // Ambil JSON dari Laravel
+        if (response.ok && data.success) {
+            // Login berhasil → redirect
+            window.location.href = data.redirect;
+        } else {
+            // Login gagal → tampilkan error
+            showLoginError(data);
+            el.innerHTML = "Ya, Masuk Sekarang";
+            el.classList.remove('pointer-events-none', 'opacity-80');
         }
+    })
+    .catch(err => {
+        console.error('Login error:', err);
+        alert('Terjadi kesalahan jaringan. Silakan coba lagi!');
+        el.innerHTML = "Ya, Masuk Sekarang";
+        el.classList.remove('pointer-events-none', 'opacity-80');
+    });
+}
+
+// Fungsi untuk menampilkan error di modal
+function showLoginError(data) {
+    const modal = document.getElementById('confirmLoginModal');
+    let errorDiv = modal.querySelector('.login-error');
+
+    if (!errorDiv) {
+        errorDiv = document.createElement('div');
+        errorDiv.classList.add('login-error', 'text-red-500', 'text-sm', 'mb-4', 'text-center');
+        modal.querySelector('div > .flex').before(errorDiv);
+    }
+
+    if (data.errors && data.errors.username) {
+        errorDiv.textContent = data.errors.username[0];
+    } else {
+        errorDiv.textContent = 'Terjadi kesalahan, silakan coba lagi!';
+    }
+}
     </script>
 </body>
 </html>

@@ -61,20 +61,21 @@
                 <div class="h-1 w-12 bg-gradient-to-r from-[#1d6fa5] to-blue-400 mx-auto mt-4 rounded-full"></div>
             </div>
 
-            <form action="#" method="POST" class="p-8 lg:p-12 pt-4">
+            <form action="{{ route('lapangan.store') }}" method="POST" enctype="multipart/form-data" class="p-8 lg:p-12 pt-4">
+                    @csrf
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     
                     <div class="lg:col-span-7 space-y-8">
                         <div class="space-y-6">
                             <div class="group">
-                                <label class="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2 ml-1 transition-colors group-focus-within:text-[#1d6fa5]">Nama Lapangan</label>
-                                <input type="text" placeholder="Enter venue name..." 
+                                <label class="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2 ml-1 transition-colors group-focus-within:text-[#1d6fa5]">Nama Fasilitas</label>
+                                <input name="nama_lapangan" type="text" placeholder="Enter venue name..." 
                                     class="w-full px-6 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-[#1d6fa5] outline-none transition-all duration-300 shadow-sm" required>
                             </div>
 
                             <div class="group">
                                 <label class="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2 ml-1 transition-colors group-focus-within:text-[#1d6fa5]">Deskripsi Fasilitas</label>
-                                <textarea rows="4" placeholder="Describe the premium features..." 
+                                <textarea name="deskripsi" rows="4" placeholder="Describe the premium features..." 
                                     class="w-full px-6 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-[#1d6fa5] outline-none transition-all duration-300 shadow-sm resize-none" required></textarea>
                             </div>
                         </div>
@@ -96,7 +97,7 @@
                                     <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-tighter font-semibold">Max size 2MB (JPG, PNG)</p>
                                 </div>
 
-                                <input type="file" id="fileInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-20" required>
+                                <input name="thumbnail" type="file" id="fileInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-20" required>
                             </div>
                         </div>
                     </div>
@@ -107,25 +108,19 @@
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Harga / Sesi</label>
                                 <div class="relative">
                                     <span class="absolute left-5 top-1/2 -translate-y-1/2 font-black text-[#1d6fa5]">Rp</span>
-                                    <input type="number" class="w-full pl-12 pr-6 py-4 rounded-xl border-none focus:ring-2 focus:ring-[#1d6fa5] shadow-sm font-bold" required>
+                                    <input name="harga" type="number" class="w-full pl-12 pr-6 py-4 rounded-xl border-none focus:ring-2 focus:ring-[#1d6fa5] shadow-sm font-bold" required>
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Sesi</label>
-                                    <select class="w-full px-4 py-4 rounded-xl border-none focus:ring-2 focus:ring-[#1d6fa5] shadow-sm font-bold text-sm appearance-none bg-white" required>
-                                        <option>Pagi</option><option>Siang</option><option>Sore</option><option>Malam</option>
-                                    </select>
-                                </div>
-                                <div>
                                     <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Kategori</label>
-                                    <select class="w-full px-4 py-4 rounded-xl border-none focus:ring-2 focus:ring-[#1d6fa5] shadow-sm font-bold text-sm appearance-none bg-white" required>
-                                        <option>Tennis</option>
-                                        <option>Voli</option>
-                                        <option>Football</option>
-                                        <option>Swimming</option>
-                                        <option>Badminton</option>
+                                        <select name="kategori" class="w-full px-4 py-4 rounded-xl border-none focus:ring-2 focus:ring-[#1d6fa5] shadow-sm font-bold text-sm appearance-none bg-white" required>
+                                        <option value="Futsal">Futsal</option>
+                                        <option value="Badminton">Badminton</option>
+                                        <option value="Voli">Voli</option>
+                                        <option value="Renang">Renang</option>
+                                        <option value="Tennis">Tennis</option>
                                     </select>
                                 </div>
                             </div>
@@ -177,9 +172,10 @@
                             </button>
 
                             <div class="w-full sm:w-1/3 relative">
-                                <a href="/admin/dashboard/dataLapangan" id="btn-batal-venue"
-                                    class="group w-full flex items-center justify-center gap-2 py-5 px-8 rounded-2xl border-2 border-slate-100 bg-white transition-all duration-300 hover:border-red-100 hover:bg-red-50 active:scale-[0.98] relative overflow-hidden decoration-none cursor-pointer">
+                                <button type="button" id="btn-batal-venue"
+                                    class="group w-full flex items-center justify-center gap-2 py-5 px-8 rounded-2xl border-2 border-slate-100 bg-white transition-all duration-300 hover:border-red-100 hover:bg-red-50 active:scale-[0.98] relative overflow-hidden cursor-pointer">
                                     
+                                    {{-- Loader --}}
                                     <div id="loader-batal-venue" class="absolute inset-0 flex items-center justify-center bg-red-50 opacity-0 invisible transition-all duration-300">
                                         <svg class="animate-spin h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -190,7 +186,7 @@
                                     <div id="text-batal-venue" class="flex items-center gap-2 transition-all duration-300">
                                         <span class="text-xs font-black uppercase tracking-widest text-slate-400 group-hover:text-red-500">Batal</span>
                                     </div>
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -267,8 +263,9 @@
             });
 
             // logika simpan data
-            btnSimpan.closest('form').addEventListener('submit', function (e) {
-                e.preventDefault(); 
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
 
                 Swal.fire({
                     title: 'Simpan Data?',
@@ -280,14 +277,9 @@
                     confirmButtonText: 'Ya, Simpan',
                     cancelButtonText: 'Batal',
                     reverseButtons: true,
-                    customClass: {
-                        popup: 'rounded-[2.5rem]',
-                        confirmButton: 'rounded-2xl px-8 py-3 font-bold',
-                        cancelButton: 'rounded-2xl px-8 py-3 font-bold'
-                    }
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        eksekusiSimpanData();
+                        form.submit(); // ← langsung submit normal
                     }
                 });
             });
@@ -368,13 +360,12 @@
         });
 
         const btnBatalVenue = document.getElementById('btn-batal-venue');
+        const loaderBatal = document.getElementById('loader-batal-venue');
+        const textBatal = document.getElementById('text-batal-venue');
 
         if (btnBatalVenue) {
             btnBatalVenue.addEventListener('click', function(e) {
                 e.preventDefault();
-                const previousPage = document.referrer || '/admin/dashboard';
-                const loader = document.getElementById('loader-batal-venue');
-                const textContent = document.getElementById('text-batal-venue');
 
                 Swal.fire({
                     title: 'Batalkan Pengisian?',
@@ -393,13 +384,16 @@
                     }
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        textContent.classList.add('opacity-0', 'scale-95');
-                        loader.classList.remove('invisible', 'opacity-0');
-                        this.classList.add('pointer-events-none');
+                        // Tampilkan loader di dalam tombol
+                        textBatal.classList.add('opacity-0', 'scale-95');
+                        loaderBatal.classList.remove('invisible', 'opacity-0');
+                        btnBatalVenue.classList.add('pointer-events-none');
 
+                        // Redirect ke halaman daftar lapangan
                         setTimeout(() => {
-                            window.location.href = previousPage;
-                        }, 700);
+                            // Gunakan URL statis agar lebih aman jika referrer kosong
+                            window.location.href = '/admin/dashboard/dataLapangan';
+                        }, 600);
                     }
                 });
             });

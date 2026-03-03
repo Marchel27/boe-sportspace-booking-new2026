@@ -76,48 +76,79 @@
 
     {{-- About Section --}}
     <section id="about" class="relative overflow-hidden bg-white py-24 px-6 lg:px-20">
-    
         <div class="absolute top-0 right-0 -translate-y-12 translate-x-12 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-50"></div>
 
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-            
-            <div class="relative w-full lg:w-1/2 group" data-aos="fade-right" data-aos-duration="1000">
-                <div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-[#1d6fa5] rounded-[2.5rem] transition-all duration-500 group-hover:-bottom-4 group-hover:-right-4"></div>
-                
-                <div class="relative overflow-hidden rounded-[2.5rem] shadow-2xl">
-                    <img 
-                        src="/image/pictures/imgAbout.svg" 
-                        alt="Gedung BOE" 
-                        class="w-full h-[450px] object-cover transform transition-transform duration-700 group-hover:scale-105"
-                    >
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row items-center gap-16 mb-20">
+                {{-- Image Side --}}
+                <div class="relative w-full lg:w-1/2 group" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-[#1d6fa5] rounded-[2.5rem] transition-all duration-500 group-hover:-bottom-4 group-hover:-right-4"></div>
+                    <div class="relative overflow-hidden rounded-[2.5rem] shadow-2xl">
+                        <img src="/image/pictures/imgAbout.svg" alt="Gedung BOE" class="w-full h-[450px] object-cover transform transition-transform duration-700 group-hover:scale-105">
+                    </div>
+                    <div class="absolute -bottom-2 lg:bottom-10 -left-4 lg:-left-10 bg-white p-6 rounded-2xl shadow-xl border border-gray-100 hidden sm:block">
+                        <p class="text-3xl font-black text-[#1d6fa5]">20+</p>
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">Tahun Pengalaman</p>
+                    </div>
                 </div>
 
-                <div class="absolute -bottom-2 lg:bottom-10 -left-4 lg:-left-10 bg-white p-6 rounded-2xl shadow-xl border border-gray-100 hidden sm:block">
-                    <p class="text-3xl font-black text-[#1d6fa5]">20+</p>
-                    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">Tahun Pengalaman</p>
+                {{-- Content Side --}}
+                <div class="w-full lg:w-1/2 flex flex-col items-start" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="mb-8">
+                        <span class="text-[#1d6fa5] font-bold uppercase tracking-[0.3em] text-sm mb-3 block">Discover Us</span>
+                        <h2 class="text-5xl lg:text-6xl font-black text-gray-800 tracking-tight leading-none">About</h2>
+                        <div class="w-20 h-2 bg-[#1d6fa5] mt-6 rounded-full"></div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <p class="text-xl leading-relaxed text-gray-600 font-medium">
+                            BBPPMPV BOE Malang tidak hanya berperan sebagai pusat pengembangan pendidikan vokasi, 
+                            tetapi juga menyediakan <span class="text-gray-900 font-bold underline decoration-[#1d6fa5]/30 decoration-4">fasilitas sewa lapangan olahraga</span> dengan kualitas terbaik.
+                        </p>
+                        <p class="text-lg leading-relaxed text-gray-500">
+                            Kami hadir sebagai bentuk dukungan terhadap gaya hidup sehat dan aktivitas kebersamaan bagi masyarakat umum. Dengan fasilitas yang terawat dan standar tinggi, kami menjamin pengalaman olahraga terbaik bagi Anda.
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="w-full lg:w-1/2 flex flex-col items-start" data-aos="fade-left" data-aos-duration="1000">
-                <div class="mb-8">
-                    <span class="text-[#1d6fa5] font-bold uppercase tracking-[0.3em] text-sm mb-3 block">
-                        Discover Us
-                    </span>
-                    <h2 class="text-5xl lg:text-6xl font-black text-gray-800 tracking-tight leading-none">
-                        About 
-                    </h2>
-                    <div class="w-20 h-2 bg-[#1d6fa5] mt-6 rounded-full"></div>
-                </div>
-                
-                <div class="space-y-6">
-                    <p class="text-xl leading-relaxed text-gray-600 font-medium">
-                        BBPPMPV BOE Malang tidak hanya berperan sebagai pusat pengembangan pendidikan vokasi, 
-                        tetapi juga menyediakan <span class="text-gray-900 font-bold underline decoration-[#1d6fa5]/30 decoration-4">fasilitas sewa lapangan olahraga</span> dengan kualitas terbaik.
-                    </p>
-                    
-                    <p class="text-lg leading-relaxed text-gray-500">
-                        Kami hadir sebagai bentuk dukungan terhadap gaya hidup sehat dan aktivitas kebersamaan bagi masyarakat umum, instansi, hingga komunitas profesional. Dengan fasilitas yang terawat dan standar tinggi, kami menjamin pengalaman olahraga terbaik bagi Anda.
-                    </p>
+            {{-- Footer Section: Developed By --}}
+            <div class="pt-12 border-t border-gray-100" data-aos="fade-up">
+                <div class="flex flex-col md:flex-row gap-8 lg:gap-12">
+                    <div class="max-w-xs shrink-0">
+                        <h3 class="text-[#1d6fa5] font-black uppercase tracking-widest text-sm mb-2">Developed By</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">Sistem ini dikembangkan oleh talenta muda berbakat melalui program kolaborasi industri dan pendidikan vokasi.</p>
+                    </div>
+
+                    <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-6">
+                        @php
+                            $devs = [
+                                ['name' => 'Mohammad Dirgo Marchellino', 'school' => 'SMKN 1 KRAKSAAN', 'role' => 'Backend Developer'],
+                                ['name' => 'Moh. Romsi Ramadani', 'school' => 'SMKN 1 KRAKSAAN', 'role' => 'UI/UX Designer'],
+                                ['name' => 'Ardan Ramadhan P.H', 'school' => 'SMKN 1 PURWOSARI', 'role' => 'Frontend Developer'],
+                                ['name' => 'Syafiq Labib', 'school' => 'SMKN 1 PURWOSARI', 'role' => 'UI/UX Designer'],
+                                ['name' => 'Muhammad Farchan', 'school' => 'SMKN 8 MALANG', 'role' => 'Backend Developer'],
+                                ['name' => 'Feriska Agustina Fitria', 'school' => 'SMKN 8 MALANG', 'role' => 'UI/UX Designer'],
+                            ];
+                        @endphp
+
+                        @foreach($devs as $dev)
+                        <div class="flex items-start gap-4 group transition-all">
+                            <div class="flex-shrink-0 w-10 h-10 bg-blue-50 text-[#1d6fa5] rounded-xl flex items-center justify-center group-hover:bg-[#1d6fa5] group-hover:text-white transition-all duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="flex flex-col">
+                                <p class="text-[13px] font-black text-gray-800 uppercase leading-none mb-1 group-hover:text-[#1d6fa5] transition-colors">{{ $dev['name'] }}</p>
+                                <p class="text-[10px] text-gray-400 font-bold tracking-tight mb-2">{{ $dev['school'] }}</p>
+                                <span class="inline-block w-fit px-2 py-0.5 bg-gray-100 text-gray-600 text-[9px] font-black uppercase rounded-md tracking-tighter">
+                                    {{ $dev['role'] }}
+                                </span>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,264 +158,65 @@
     <div id="booking" class="bg-[#FFFFFF] py-24 px-6 min-h-screen" data-aos="fade-down">
         <div class="max-w-6xl mx-auto mb-12 text-center">
             <h1 class="text-4xl md:text-5xl font-black text-gray-800 uppercase tracking-tighter">
-            Boo<span class="text-[#1d6fa5]">king</span>
+                Boo<span class="text-[#1d6fa5]">king</span>
             </h1>
             <div class="h-1.5 w-20 bg-[#1d6fa5] mx-auto mt-4 rounded-full"></div>
         </div>
 
-        {{-- Tennis --}}
         <div class="flex justify-center items-center">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 max-w-6xl w-full">
-            
-            <div data-aos="fade-up" data-aos-delay="200" class="group bg-white rounded-[2rem] shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col border border-gray-100">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="/image/pictures/tenis-boe.svg" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
-                        <p class="text-[10px] font-bold uppercase tracking-widest text-[#1d6fa5]">Premium Venue</p>
-                    </div>
-                </div>
                 
-                <div class="p-8 flex flex-col flex-grow">
-                    <div class="flex justify-between items-start mb-2">
-                        <h2 class="text-2xl font-black text-gray-800 leading-tight">
-                        Tennis <span class="text-[#1d6fa5]">Court</span>
-                        </h2>
-                    </div>
-                    <p class="text-gray-500 text-sm mb-6 leading-relaxed">
-                        Fasilitas lapangan indoor standar nasional dengan pencahayaan optimal untuk aktivitas yang lebih nyaman.
-                    </p>
-
-                    <div class="mt-auto pt-6 border-t border-gray-50 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0">
-                        <div>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Mulai Dari</p>
-                            <p class="text-2xl font-black text-gray-900">
-                                Rp 150k<span class="text-xs font-medium text-gray-400 pl-1">/ Sesi</span>
-                            </p>
-                        </div>
-
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-                            <button 
-                                onclick="openDescription('Tennis Court', 'Nikmati pengalaman bermain tenis yang tak tertandingi di lapangan berstandar internasional kami. Dirancang dengan permukaan hard court berkualitas tinggi untuk pantulan bola yang presisi dan konsisten, serta sistem pencahayaan LED profesional yang menjamin visibilitas sempurna bahkan di malam hari. Baik Anda seorang pemula yang ingin mengasah teknik maupun atlet profesional yang bersiap untuk turnamen, fasilitas kami menyediakan atmosfer yang ideal untuk setiap pukulan ace dan rally panjang Anda.', '/image/pictures/tenis-boe.svg')"
-                                class="text-[#1d6fa5] border border-[#1d6fa5] hover:bg-[#1d6fa5] hover:text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 text-center flex-1 sm:flex-none"
-                            >
-                                Detail
-                            </button>
-                            
-                            <a href="/formBooking" 
-                                class="btn-book-now relative inline-flex items-center justify-center bg-[#1d6fa5] hover:bg-black text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 transform active:scale-95 shadow-lg shadow-blue-200 hover:shadow-none text-center flex-1 sm:flex-none overflow-hidden min-w-[120px]"
-                            >
-                                <svg class="loading-spinner hidden animate-spin h-4 w-4 text-white absolute" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-
-                                <span class="btn-label transition-all duration-300">Book Now</span>
-                            </a>
+                @foreach ($lapangan as $item)
+                <div data-aos="fade-up" data-aos-delay="200" class="group bg-white rounded-[2rem] shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col border border-gray-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="{{ asset('storage/' . $item->thumbnail) }}" 
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-[#1d6fa5]">Premium Venue</p>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            {{-- Voli --}}
-            <div data-aos="fade-up" data-aos-delay="200" class="group bg-white rounded-[2rem] shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col border border-gray-100">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="/image/pictures/voli-boe.svg" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
-                        <p class="text-[10px] font-bold uppercase tracking-widest text-[#1d6fa5]">Community Choice</p>
-                    </div>
-                </div>
-                
-                <div class="p-8 flex flex-col flex-grow">
-                    <div class="flex justify-between items-start mb-2">
-                        <h2 class="text-2xl font-black text-gray-800 leading-tight">
-                        Voli <span class="text-[#1d6fa5]">Arena</span>
-                        </h2>
-                    </div>
-                    <p class="text-gray-500 text-sm mb-6 leading-relaxed">
-                        Area luas dengan lantai anti-slip. Cocok untuk turnamen maupun latihan rutin bersama tim Anda.
-                    </p>
-
-                    <div class="mt-auto pt-6 border-t border-gray-50 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0">
-                        <div>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Mulai Dari</p>
-                            <p class="text-2xl font-black text-gray-900">
-                                Rp 150k<span class="text-xs font-medium text-gray-400 pl-1">/ Sesi</span>
-                            </p>
-                        </div>
-
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-                            <button 
-                                onclick="openDescription('Voli Arena', 'Bangun kekompakan tim Anda di arena voli dengan standar kenyamanan tinggi. Fasilitas kami dilengkapi dengan lantai khusus anti-slip yang dirancang untuk mendukung pergerakan intens, lompatan smash yang eksplosif, serta manuver bertahan yang aman. Dengan sirkulasi udara yang baik dan pencahayaan yang merata, arena ini menjadi pilihan utama bagi komunitas untuk menggelar turnamen kompetitif maupun sekadar latihan rutin guna mempererat solidaritas antar pemain.', '/image/pictures/voli-boe.svg')"
-                                class="text-[#1d6fa5] border border-[#1d6fa5] hover:bg-[#1d6fa5] hover:text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 text-center flex-1 sm:flex-none"
-                            >
-                                Detail
-                            </button>
-                            
-                            <a href="/formBooking" 
-                                class="btn-book-now relative inline-flex items-center justify-center bg-[#1d6fa5] hover:bg-black text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 transform active:scale-95 shadow-lg shadow-blue-200 hover:shadow-none text-center flex-1 sm:flex-none overflow-hidden min-w-[120px]"
-                            >
-                                <svg class="loading-spinner hidden animate-spin h-4 w-4 text-white absolute" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-
-                                <span class="btn-label transition-all duration-300">Book Now</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Football --}}
-            <div data-aos="fade-up" data-aos-delay="300" class="group bg-white rounded-[2rem] shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col border border-gray-100">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="/image/pictures/football.png" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
-                        <p class="text-[10px] font-bold uppercase tracking-widest text-[#1d6fa5]">Outdoor Field</p>
-                    </div>
-                </div>
-                
-                <div class="p-8 flex flex-col flex-grow">
-                    <div class="flex justify-between items-start mb-2">
-                        <h2 class="text-2xl font-black text-gray-800 leading-tight">
-                        Football <span class="text-[#1d6fa5]">Stadium</span>
-                        </h2>
-                    </div>
-                    <p class="text-gray-500 text-sm mb-6 leading-relaxed">
-                        Rumput alami berkualitas tinggi dengan drainase canggih untuk permainan maksimal di segala cuaca.
-                    </p>
-
                     
-                    <div class="mt-auto pt-6 border-t border-gray-50 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0">
-                        <div>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Mulai Dari</p>
-                            <p class="text-2xl font-black text-gray-900">
-                                Rp 150k<span class="text-xs font-medium text-gray-400 pl-1">/ Sesi</span>
-                            </p>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h2 class="text-2xl font-black text-gray-800 leading-tight">
+                                {{ $item->nama_lapangan }} <span class="text-[#1d6fa5]">Court</span>
+                            </h2>
                         </div>
+                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">
+                            Nikmati pengalaman bermain {{ $item->nama_lapangan }} yang maksimal di lapangan berstandar tinggi. Permukaan lapangan dirancang untuk memberikan kenyamanan dan performa optimal.
+                        </p>
 
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-                            <button 
-                                onclick="openDescription('Football Stadium', 'Rasakan sensasi bermain di lapangan sepak bola dengan standar perawatan profesional. Kami menghadirkan rumput alami berkualitas tinggi yang dipadukan dengan sistem drainase canggih, memastikan aliran permainan tetap maksimal meski dalam kondisi cuaca ekstrem sekalipun. Lebih dari sekadar tempat berolahraga, stadion ini dirancang untuk membangun semangat kompetisi yang sehat dan menciptakan momen kebersamaan yang tak terlupakan bagi setiap tim.', '/image/pictures/football.png')"
-                                class="text-[#1d6fa5] border border-[#1d6fa5] hover:bg-[#1d6fa5] hover:text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 text-center flex-1 sm:flex-none"
-                            >
-                                Detail
-                            </button>
-                            
-                            <a href="/formBooking" 
-                                class="btn-book-now relative inline-flex items-center justify-center bg-[#1d6fa5] hover:bg-black text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 transform active:scale-95 shadow-lg shadow-blue-200 hover:shadow-none text-center flex-1 sm:flex-none overflow-hidden min-w-[120px]"
-                            >
-                                <svg class="loading-spinner hidden animate-spin h-4 w-4 text-white absolute" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
+                        <div class="mt-auto pt-6 border-t border-gray-50 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0">
+                            <div>
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Mulai Dari</p>
+                                <p class="text-2xl font-black text-gray-900">
+                                    Rp {{ number_format($item->harga) }}<span class="text-xs font-medium text-gray-400 pl-1">/ Sesi</span>
+                                </p>
+                            </div>
 
-                                <span class="btn-label transition-all duration-300">Book Now</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Swimming --}}
-            <div data-aos="fade-up" data-aos-delay="400" class="group bg-white rounded-[2rem] shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col border border-gray-100">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="/image/pictures/kolamRenang.svg" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
-                        <p class="text-[10px] font-bold uppercase tracking-widest text-[#1d6fa5]">Olympic Size</p>
-                    </div>
-                </div>
-                
-                <div class="p-8 flex flex-col flex-grow">
-                    <div class="flex justify-between items-start mb-2">
-                        <h2 class="text-2xl font-black text-gray-800 leading-tight">
-                        Swimming <span class="text-[#1d6fa5]">Pool</span>
-                        </h2>
-                    </div>
-                    <p class="text-gray-500 text-sm mb-6 leading-relaxed">
-                        Air yang jernih dengan sistem sirkulasi modern. Tersedia area untuk dewasa dan anak-anak.
-                    </p>
-
-                    <div class="mt-auto pt-6 border-t border-gray-50 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0">
-                        <div>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Mulai Dari</p>
-                            <p class="text-2xl font-black text-gray-900">
-                                Rp 150k<span class="text-xs font-medium text-gray-400 pl-1">/ Sesi</span>
-                            </p>
-                        </div>
-
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-                            <button 
-                                onclick="openDescription('Swimming Pool', 'Segarkan diri Anda di kolam renang berukuran Olympic kami yang menawarkan kejernihan air kristal berkat sistem filtrasi dan sirkulasi modern yang terjaga kebersihannya. Fasilitas ini dirancang untuk memenuhi kebutuhan semua kalangan, mulai dari area khusus anak yang aman hingga lintasan profesional bagi Anda yang ingin melatih stamina atau sekadar melepas penat. Dengan atmosfer yang tenang dan lingkungan yang higienis, kami menghadirkan tempat terbaik untuk menjaga kebugaran tubuh Anda di bawah air.', '/image/pictures/kolamRenang.svg')"
-                                class="text-[#1d6fa5] border border-[#1d6fa5] hover:bg-[#1d6fa5] hover:text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 text-center flex-1 sm:flex-none"
-                            >
-                                Detail
-                            </button>
-                            
-                            <a href="/formBooking" 
-                                class="btn-book-now relative inline-flex items-center justify-center bg-[#1d6fa5] hover:bg-black text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 transform active:scale-95 shadow-lg shadow-blue-200 hover:shadow-none text-center flex-1 sm:flex-none overflow-hidden min-w-[120px]"
-                            >
-                                <svg class="loading-spinner hidden animate-spin h-4 w-4 text-white absolute" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-
-                                <span class="btn-label transition-all duration-300">Book Now</span>
-                            </a>
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                                <button
+                                    onclick="openDescription('{{ $item->nama_lapangan }}', 'Nikmati pengalaman bermain {{ $item->nama_lapangan }} yang maksimal di lapangan berstandar tinggi. Permukaan lapangan dirancang untuk memberikan kenyamanan dan performa optimal, baik untuk pemula maupun atlet profesional. Dilengkapi pencahayaan modern dan fasilitas pendukung, memastikan setiap sesi olahraga menjadi menyenangkan dan aman. Cocok untuk latihan, kompetisi, maupun kegiatan komunitas.', '{{ asset('storage/'.$item->thumbnail) }}')"
+                                    class="text-[#1d6fa5] border border-[#1d6fa5] hover:bg-[#1d6fa5] hover:text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 text-center flex-1 sm:flex-none"
+                                >
+                                    Detail
+                                </button>
+                                
+                                <a href="/formBooking"
+                                    class="btn-book-now relative inline-flex items-center justify-center bg-[#1d6fa5] hover:bg-black text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 transform active:scale-95 shadow-lg shadow-blue-200 hover:shadow-none text-center flex-1 sm:flex-none overflow-hidden min-w-[120px]"
+                                >
+                                    <svg class="loading-spinner hidden animate-spin h-4 w-4 text-white absolute" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    <span class="btn-label transition-all duration-300">Book Now</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                @endforeach
 
-            {{-- Bulu Tangkis --}}
-            <div data-aos="fade-up" data-aos-delay="400" class="group bg-white rounded-[2rem] shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col border border-gray-100">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="/image/pictures/bulutangkis.png" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
-                        <p class="text-[10px] font-bold uppercase tracking-widest text-[#1d6fa5]">BWF Standard</p>
-                    </div>
-                </div>
-                
-                <div class="p-8 flex flex-col flex-grow">
-                    <div class="flex justify-between items-start mb-2">
-                        <h2 class="text-2xl font-black text-gray-800 leading-tight">
-                            Badminton <span class="text-[#1d6fa5]">Court</span>
-                        </h2>
-                    </div>
-                    <p class="text-gray-500 text-sm mb-6 leading-relaxed">
-                        Lapangan dengan karpet vinyl standar internasional dan sirkulasi udara yang nyaman untuk permainan cepat.
-                    </p>
-
-                    <div class="mt-auto pt-6 border-t border-gray-50 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0">
-                        <div>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Mulai Dari</p>
-                            <p class="text-2xl font-black text-gray-900">
-                                Rp 150k<span class="text-xs font-medium text-gray-400 pl-1">/ Sesi</span>
-                            </p>
-                        </div>
-
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-                            <button 
-                                onclick="openDescription('Badminton Court', 'Rasakan pengalaman bermain bulu tangkis di lapangan kelas satu yang menggunakan karpet vinyl standar BWF untuk meredam benturan dan mencegah cedera. Didukung dengan tata cahaya yang tidak menyilaukan (anti-glare) dan desain atap yang tinggi untuk memastikan pergerakan shuttlecock tetap stabil. Fasilitas kami adalah pilihan tepat bagi Anda yang ingin meningkatkan level permainan, mulai dari latihan rutin hingga pertandingan persahabatan dengan kenyamanan maksimal.', '/image/pictures/bulutangkis.png')"
-                                class="text-[#1d6fa5] border border-[#1d6fa5] hover:bg-[#1d6fa5] hover:text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 text-center flex-1 sm:flex-none"
-                            >
-                                Detail
-                            </button>
-                            
-                            <a href="/formBooking" 
-                                class="btn-book-now relative inline-flex items-center justify-center bg-[#1d6fa5] hover:bg-black text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 transform active:scale-95 shadow-lg shadow-blue-200 hover:shadow-none text-center flex-1 sm:flex-none overflow-hidden min-w-[120px]"
-                            >
-                                <svg class="loading-spinner hidden animate-spin h-4 w-4 text-white absolute" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-
-                                <span class="btn-label transition-all duration-300">Book Now</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
             </div>
         </div>
     </div>
@@ -555,25 +387,6 @@
         }
     });
 
-    function openDescription(title, description) {
-        const modal = document.getElementById('descModal');
-        const modalContent = document.getElementById('modalContent');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalBody = document.getElementById('modalBody');
-
-        modalTitle.innerText = title;
-        modalBody.innerText = description;
-
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        
-        setTimeout(() => {
-            modalContent.classList.remove('scale-95', 'opacity-0');
-            modalContent.classList.add('scale-100', 'opacity-100');
-        }, 10);
-        
-        document.body.style.overflow = 'hidden';
-    }
 
     let currentPreviewImg = ""; // Variabel global untuk menyimpan gambar aktif
 

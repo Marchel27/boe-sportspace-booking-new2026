@@ -19,7 +19,7 @@
         <div class="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-indigo-100 blur-[120px] rounded-full opacity-50"></div>
     </div>
 
-    <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
+    <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-16 flex justify-center items-center">
         <div class="w-full max-w-5xl bg-white/80 backdrop-blur-xl rounded-[3rem] shadow-[0_32px_64px_-15px_rgba(0,0,0,0.08)] border border-white overflow-hidden transition-all duration-500 hover:shadow-blue-200/40">
             
             <div class="pt-10 pb-6 px-10 text-center">
@@ -39,33 +39,42 @@
                 <div class="h-1 w-12 bg-gradient-to-r from-[#1d6fa5] to-blue-400 mx-auto mt-4 rounded-full"></div>
             </div>
 
-            <form action="#" method="POST" class="p-8 lg:p-12 pt-4">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <form action="{{ route('lapangan.update', $lapangan->id_lap) }}" 
+                method="POST" 
+                enctype="multipart/form-data"
+                 class="p-8 lg:p-12 pt-4">
+
+                @csrf
+                @method('PUT')
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     
                     <div class="lg:col-span-7 space-y-8">
                         <div class="space-y-6">
                             <div class="group">
                                 <label class="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2 ml-1 transition-colors group-focus-within:text-[#1d6fa5]">Nama Lapangan</label>
-                                <input type="text" value="Lapangan Futsal Premium" placeholder="Enter venue name..." 
+                                <input name="nama_lapangan" type="text" value="{{ $lapangan->nama_lapangan }}" placeholder="Enter venue name..." 
                                     class="w-full px-6 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-[#1d6fa5] outline-none transition-all duration-300 shadow-sm" required>
                             </div>
 
                             <div class="group">
                                 <label class="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2 ml-1 transition-colors group-focus-within:text-[#1d6fa5]">Deskripsi Fasilitas</label>
-                                <textarea rows="4" placeholder="Describe the premium features..." 
-                                    class="w-full px-6 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-[#1d6fa5] outline-none transition-all duration-300 shadow-sm resize-none" required>Rumput standar internasional, tribun penonton, dan parkir luas.</textarea>
+                                <textarea name="deskripsi" rows="4" placeholder="Describe the premium features..." 
+                                    class="w-full px-6 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-[#1d6fa5] outline-none transition-all duration-300 shadow-sm resize-none" required>{{ $lapangan->deskripsi}}</textarea>
                             </div>
                         </div>
 
                         <div class="relative group max-w-md">
                             <label class="block text-xs font-black text-slate-400 uppercase tracking-widest mb-3 ml-1 transition-colors group-focus-within:text-[#1d6fa5]">
                                 Main Thumbnail
-                            </label>
+                            </label>    
                             
                             <div id="dropzone" class="relative overflow-hidden rounded-[2.5rem] border-2 border-dashed border-slate-200 bg-slate-50/50 hover:bg-white hover:border-[#1d6fa5] transition-all duration-500 h-72 flex flex-col items-center justify-center group/drop">
                                 
-                                <img id="preview" class="absolute inset-0 w-full h-full object-cover z-0" 
-                                    src="https://picsum.photos/800/600?sport" 
+                                <img id="preview"
+                                    class="absolute inset-0 w-full h-full object-cover z-0"
+                                    src="{{ $lapangan->thumbnail 
+                                            ? asset('storage/' . $lapangan->thumbnail) 
+                                            : asset('image/default-thumbnail.jpg') }}"
                                     alt="Preview Thumbnail" />
 
                                 <div id="ui-content" class="relative z-10 flex flex-col items-center justify-center pointer-events-none opacity-0 group-hover/drop:opacity-100 transition-opacity duration-300">
@@ -88,55 +97,66 @@
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Harga / Sesi</label>
                                 <div class="relative">
                                     <span class="absolute left-5 top-1/2 -translate-y-1/2 font-black text-[#1d6fa5]">Rp</span>
-                                    <input type="number" value="150000" class="w-full pl-12 pr-6 py-4 rounded-xl border-none focus:ring-2 focus:ring-[#1d6fa5] shadow-sm font-bold" required>
+                                    <input name="harga" type="number" value="{{ $lapangan->harga }}" class="w-full pl-12 pr-6 py-4 rounded-xl border-none focus:ring-2 focus:ring-[#1d6fa5] shadow-sm font-bold" required>
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Sesi</label>
-                                    <select class="w-full px-4 py-4 rounded-xl border-none focus:ring-2 focus:ring-[#1d6fa5] shadow-sm font-bold text-sm appearance-none bg-white" required>
-                                        <option>Pagi</option>
-                                        <option selected>Siang</option>
-                                        <option>Sore</option>
-                                        <option>Malam</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Kategori</label>
-                                    <select class="w-full px-4 py-4 rounded-xl border-none focus:ring-2 focus:ring-[#1d6fa5] shadow-sm font-bold text-sm appearance-none bg-white" required>
-                                        <option>Tennis</option>
-                                        <option>Voli</option>
-                                        <option selected>Football</option>
-                                        <option>Swimming</option>
-                                        <option>Badminton</option>
+                                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">
+                                        Kategori
+                                    </label>
+
+                                    <select name="kategori"
+                                        class="w-full px-4 py-4 rounded-xl border-none focus:ring-2 focus:ring-[#1d6fa5] shadow-sm font-bold text-sm appearance-none bg-white"
+                                        required>
+
+                                        <option value="Tennis" {{ $lapangan->kategori == 'Tennis' ? 'selected' : '' }}>Tennis</option>
+                                        <option value="Football" {{ $lapangan->kategori == 'Football' ? 'selected' : '' }}>Football</option>
+                                        <option value="Voli" {{ $lapangan->kategori == 'Voli' ? 'selected' : '' }}>Voli</option>
+                                        <option value="Swimming" {{ $lapangan->kategori == 'Swimming' ? 'selected' : '' }}>Swimming</option>
+                                        <option value="Badminton" {{ $lapangan->kategori == 'Badminton' ? 'selected' : '' }}>Badminton</option>
+
                                     </select>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="space-y-4">
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
-                                Gallery Preview
-                            </label>
-                            
-                            <div class="grid grid-cols-3 gap-4">
-                                {{-- Kita buat loop manual 3 kali untuk simulasi gambar --}}
+                        <div class="grid grid-cols-3 gap-4">
+
+                            @forelse ($lapangan->galeri as $galeri)
+                            <div class="gallery-container aspect-square rounded-2xl border-2 border-dashed border-slate-200 bg-white hover:border-[#1d6fa5] transition-all flex items-center justify-center relative group cursor-pointer overflow-hidden">
+                                
+                                <img class="preview-target absolute inset-0 w-full h-full object-cover z-0" 
+                                    src="{{ asset('storage/' . $galeri->image_path) }}" />
+
+                                <div class="ui-wrapper flex flex-col items-center justify-center pointer-events-none z-10 opacity-0">
+                                    <span class="text-slate-300 group-hover:text-[#1d6fa5] font-black text-xl transition-colors">+</span>
+                                </div>
+
+                                <input type="file" name="gallery[]" accept="image/*"
+                                    class="gallery-input absolute inset-0 opacity-0 cursor-pointer z-20" multiple>
+                            </div>
+
+                            @empty
+                                
                                 @for ($i = 1; $i <= 3; $i++)
                                 <div class="gallery-container aspect-square rounded-2xl border-2 border-dashed border-slate-200 bg-white hover:border-[#1d6fa5] transition-all flex items-center justify-center relative group cursor-pointer overflow-hidden">
                                     
-                                    {{-- Ini adalah gambar dummy/contoh --}}
-                                    <img class="preview-target absolute inset-0 w-full h-full object-cover z-0" 
-                                        src="https://picsum.photos/400/400?random={{ $i }}" />
-                                    
-                                    <div class="ui-wrapper flex flex-col items-center justify-center pointer-events-none z-10 opacity-0">
+                                    <img class="preview-target absolute inset-0 w-full h-full object-cover z-0 hidden" />
+
+                                    <div class="ui-wrapper flex flex-col items-center justify-center pointer-events-none z-10">
                                         <span class="text-slate-300 group-hover:text-[#1d6fa5] font-black text-xl transition-colors">+</span>
                                     </div>
-                                    
-                                    <input type="file" name="gallery[]" accept="image/*" class="gallery-input absolute inset-0 opacity-0 cursor-pointer z-20">
+
+                                    <input type="file" 
+                                        name="gallery[]" 
+                                        accept="image/*"
+                                        class="gallery-input absolute inset-0 opacity-0 cursor-pointer z-20">
                                 </div>
                                 @endfor
-                            </div>
+                            @endforelse
+
                         </div>
 
                         <div class="flex flex-col sm:flex-row-reverse gap-4 pt-6 mt-4 border-t border-slate-100/50">
@@ -221,8 +241,6 @@
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         preview.src = e.target.result;
-                        preview.classList.remove('hidden');
-                        uiContent.classList.add('opacity-0'); 
                     }
                     reader.readAsDataURL(file);
                 }
@@ -233,15 +251,22 @@
                 input.addEventListener('change', function(e) {
                     const file = e.target.files[0];
                     const container = this.closest('.gallery-container');
-                    const previewTarget = container.querySelector('.preview-target');
-                    const uiWrapper = container.querySelector('.ui-wrapper');
+
+                    let previewTarget = container.querySelector('.preview-target');
+                    let uiWrapper = container.querySelector('.ui-wrapper');
+
+                    if (!previewTarget) {
+                        previewTarget = document.createElement('img');
+                        previewTarget.classList.add('preview-target', 'absolute', 'inset-0', 'w-full', 'h-full', 'object-cover', 'z-0');
+                        container.prepend(previewTarget);
+                    }
 
                     if (file) {
                         const reader = new FileReader();
                         reader.onload = function(event) {
                             previewTarget.src = event.target.result;
                             previewTarget.classList.remove('hidden');
-                            uiWrapper.classList.add('opacity-0');
+                            if (uiWrapper) uiWrapper.classList.add('opacity-0');
                         }
                         reader.readAsDataURL(file);
                     }
@@ -275,57 +300,36 @@
             });
 
             function eksekusiSimpanData(redirectUrl) {
-                const overlay = document.getElementById('loadingOverlay');
-                const statusText = document.getElementById('loadingStatus');
-                
-                // Animasi loading pada tombol simpan (samakan dengan tombol batal)
-                const loaderSimpan = document.getElementById('loader-simpan');
-                const textSimpan = document.getElementById('text-simpan');
-                if(textSimpan && loaderSimpan) {
-                    textSimpan.classList.add('opacity-0', 'blur-sm');
-                    loaderSimpan.classList.remove('invisible', 'opacity-0');
-                    loaderSimpan.classList.add('opacity-100');
+            const form = btnSimpan.closest('form'); // ambil form
+            const overlay = document.getElementById('loadingOverlay');
+            const statusText = document.getElementById('loadingStatus');
+            
+            overlay.classList.remove('hidden');
+            overlay.classList.add('flex');
+
+            const sequences = ["Memvalidasi perubahan...", "Sinkronisasi database...", "Menyimpan data..."];
+            let step = 0;
+            const interval = setInterval(() => {
+                if (step < sequences.length) {
+                    statusText.innerText = sequences[step];
+                    step++;
                 }
+            }, 800);
 
-                overlay.classList.remove('hidden');
-                overlay.classList.add('flex');
-
-                const sequences = ["Memvalidasi perubahan...", "Sinkronisasi database...", "Menyimpan data..."];
-                let step = 0;
-                const interval = setInterval(() => {
-                    if (step < sequences.length) {
-                        statusText.classList.add('opacity-0', 'translate-y-2');
-                        setTimeout(() => {
-                            statusText.innerText = sequences[step];
-                            statusText.classList.remove('opacity-0', 'translate-y-2');
-                            step++;
-                        }, 300);
-                    }
-                }, 800);
-
+            setTimeout(() => {
+                clearInterval(interval);
+                overlay.classList.add('opacity-0');
                 setTimeout(() => {
-                    clearInterval(interval);
-                    overlay.classList.add('opacity-0');
-                    setTimeout(() => {
-                        overlay.classList.add('hidden');
-                        overlay.classList.remove('flex', 'opacity-0');
-                        Swal.fire({
-                            title: 'Berhasil Diperbarui',
-                            text: 'Data venue telah berhasil di-update.',
-                            icon: 'success',
-                            iconColor: '#22c55e', 
-                            showConfirmButton: false,
-                            timer: 1500,
-                            customClass: { popup: 'rounded-3xl' }
-                        }).then(() => {
-                            document.body.style.opacity = '0';
-                            setTimeout(() => { window.location.href = redirectUrl; }, 500);
-                        });
-                    }, 500);
-                }, 3000);
-            }
+                    overlay.classList.add('hidden');
+                    overlay.classList.remove('flex', 'opacity-0');
 
-            // Logika Tombol Batal
+                    // **Submit form ke server**
+                    form.submit();
+
+                }, 500);
+            }, 3000);
+        }
+                    // Logika Tombol Batal
             const btnBatalVenue = document.getElementById('btn-batal-venue');
             if (btnBatalVenue) {
                 btnBatalVenue.addEventListener('click', function(e) {

@@ -41,86 +41,59 @@
 
                 <form action="#" id="formBooking" class="grid grid-cols-1 gap-6">
                     
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="relative group">
+                    <div class="relative group">
                             <label class="absolute -top-2.5 left-4 bg-white px-2 text-[11px] font-bold text-blue-600 uppercase tracking-wider z-10">Nama Pemesan</label>
-                            <input type="text" name="nama" value="Yanto Sholeh" 
-                                class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all duration-300 font-semibold text-slate-700" required>
-                        </div>
-                        <div class="relative group">
+                            <input type="text" name="nama" value="{{ $booking->penyewa->nama ?? '' }}" 
+                                class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all duration-300 font-semibold text-slate-700" required disabled>
+                    </div>
+                    <div class="relative group">
                             <label class="absolute -top-2.5 left-4 bg-white px-2 text-[11px] font-bold text-blue-600 uppercase tracking-wider z-10">WhatsApp</label>
-                            <input type="tel" name="whatsapp" value="08934678010" 
-                                class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all duration-300 font-semibold text-slate-700" required>
-                        </div>
+                            <input type="tel" name="no_hp" value="{{ $booking->penyewa->no_hp ?? '' }}"
+                                class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all duration-300 font-semibold text-slate-700" required disabled>
                     </div>
 
                     <div class="relative group">
                         <label class="absolute -top-2.5 left-4 bg-white px-2 text-[11px] font-bold text-blue-600 uppercase tracking-wider z-10">Fasilitas / Lapangan</label>
-                        <select class="w-full px-5 py-4 bg-slate-50/50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all duration-300 font-semibold text-slate-700 appearance-none cursor-pointer" required>
-                            <option>Tennis BOE - Sport Space</option>
-                            <option>Volli BOE - Sport Space</option>
-                            <option>Football BOE - Sport Space</option>
-                            <option>Swimming BOE - Sport Space</option>
-                            <option>Badminton BOE - Sport Space</option>
-                        </select>
-                        <div class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                        </div>
+                        <input type="tel" name="nama_lapangan" value="{{ $booking->lapangan->nama_lapangan ?? '' }}" 
+                                class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all duration-300 font-semibold text-slate-700" required disabled>
                     </div>
 
                     <div class="relative group">
                         <label class="absolute -top-2.5 left-4 bg-white px-2 text-[11px] font-bold text-emerald-600 uppercase tracking-wider z-10">Total Pembayaran</label>
                         <div class="relative flex items-center">
                             <span class="absolute left-5 text-emerald-600 font-bold">Rp</span>
-                            <input type="number" value="200000" 
-                                class="w-full pl-12 pr-5 py-4 bg-emerald-50/30 border-2 border-emerald-100/50 rounded-2xl focus:border-emerald-500 focus:bg-white outline-none transition-all duration-300 font-bold text-xl text-emerald-700" required>
+                            <input name="harga" type="text" 
+                                value="{{ number_format($booking->lapangan->harga ?? 0, 0, ',', '.') }}"
+                                id="harga"
+                                class="w-full pl-12 pr-5 py-4 bg-emerald-50/30 border-2 border-emerald-100/50 rounded-2xl focus:border-emerald-500 focus:bg-white outline-none transition-all duration-300 font-bold text-xl text-emerald-700"
+                                required readonly>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div class="relative">
                             <label class="absolute -top-2.5 left-4 bg-white px-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider z-10">Tanggal</label>
-                            <input type="date" value="2026-10-09" 
-                                class="w-full px-4 py-4 bg-slate-50/50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all duration-300 font-bold text-slate-600 text-sm" required>
+                            <input type="date" value="{{ $booking->tanggal ?? '' }}" 
+                                class="w-full px-4 py-4 bg-slate-50/50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all duration-300 font-bold text-slate-600 text-sm" required disabled>
                         </div>
                         <div class="relative">
                             <label class="absolute -top-2.5 left-4 bg-white px-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider z-10">Jam</label>
-                            <input type="time" value="14:00" 
-                                class="w-full px-4 py-4 bg-slate-50/50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all duration-300 font-bold text-slate-600 text-sm" required>
+                            <input type="text" value="{{ $booking->sesi_waktu ?? '' }}" 
+                                class="w-full px-4 py-4 bg-slate-50/50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all duration-300 font-bold text-slate-600 text-sm" required disabled>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-8">
+                    <div class="col-span-2">
                         <button type="button" onclick="konfirmasiBatal()" 
-                            class="order-2 sm:order-1 w-full py-4 rounded-2xl text-slate-500 font-bold tracking-wide border-2 border-slate-100 hover:border-slate-200 hover:bg-slate-50 hover:text-slate-700 transition-all duration-300 active:scale-[0.97] flex items-center justify-center group">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            class="w-full py-4 rounded-2xl text-slate-500 font-bold tracking-wide border-2 border-slate-100 hover:border-slate-200 hover:bg-slate-50 hover:text-slate-700 transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
                             KEMBALI
                         </button>
-
-                        <button type="submit" id="btnSimpan" 
-                            class="order-1 sm:order-2 w-full py-4 bg-gradient-to-br from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white rounded-2xl font-black tracking-[0.1em] shadow-[0_10px_20px_-5px_rgba(37,99,235,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(37,99,235,0.4)] transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-3 overflow-hidden relative group">
-                            
-                            <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shining_1.5s_infinite]"></span>
-                            
-                            <div id="btnContent" class="flex items-center gap-3 transition-all duration-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                    <polyline points="7 10 12 15 17 10"/>
-                                    <line x1="12" x2="12" y1="15" y2="3"/>
-                                </svg>
-                                <span class="relative">SIMPAN DATA</span>
-                            </div>
-
-                            <div id="btnLoader" class="hidden animate-spin">
-                                <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                            </div>
-                        </button>
                     </div>
+                </div>
                 </form>
             </div>
         </div>
@@ -135,102 +108,17 @@
             tanyaKonfirmasi();
         });
 
-        // Popup Pilihan (Ya/Tidak)
-        function tanyaKonfirmasi() {
-            Swal.fire({
-                title: '<span class="text-xl font-black text-slate-800 uppercase tracking-widest">Simpan Data?</span>',
-                html: '<p class="text-slate-500 font-medium text-sm">Pastikan data booking sudah sesuai sebelum disimpan ke sistem.</p>',
-                icon: 'question',
-                iconColor: '#2563eb',
-                showCancelButton: true,
-                confirmButtonColor: '#2563eb', 
-                cancelButtonColor: '#1e293b',  
-                confirmButtonText: 'YA, SIMPAN',
-                cancelButtonText: 'CEK LAGI',
-                reverseButtons: true,
-                scrollbarPadding: false,
-                borderRadius: '2.5rem',
-                padding: '2.5rem',
-                customClass: {
-                    confirmButton: 'rounded-xl px-8 py-3 font-bold text-xs tracking-wider',
-                    cancelButton: 'rounded-xl px-8 py-3 font-bold text-xs tracking-wider text-white'
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    jalankanProsesSimpan();
-                }
-            });
-        }
-
-        // Eksekusi Simpan & Animasi Loading
-        function jalankanProsesSimpan() {
-            const btn = document.getElementById('btnSimpan');
-            const content = document.getElementById('btnContent');
-            const loader = document.getElementById('btnLoader');
-
-            btn.classList.add('pointer-events-none', 'opacity-90');
-            content.classList.add('hidden');
-            loader.classList.remove('hidden');
-
-            Swal.fire({
-                title: '<span class="text-xl font-black text-slate-800 uppercase tracking-widest">Memproses Data</span>',
-                html: `
-                    <div class="mt-4 mb-2">
-                        <p class="text-slate-500 text-sm font-medium animate-pulse">Mohon tunggu sebentar...</p>
-                        <p class="text-slate-400 text-[10px] mt-2 tracking-tight">Sedang mendaftarkan reservasi ke database BOE-Sport</p>
-                    </div>
-                `,
-                allowOutsideClick: false,
-                showConfirmButton: false,
-                scrollbarPadding: false,
-                borderRadius: '2.5rem',
-                padding: '3rem',
-                didOpen: () => {
-                    Swal.showLoading(); 
-                }
-            });
-
-            // proses server
-            setTimeout(() => {
-                Swal.fire({
-                    title: '<span class="text-2xl font-black text-slate-800">BERHASIL!</span>',
-                    html: '<p class="text-slate-500 font-medium">Data booking telah berhasil disimpan ke sistem.</p>',
-                    icon: 'success',
-                    iconColor: '#10B981',
-                    timer: 2000,
-                    showConfirmButton: false,
-                    timerProgressBar: true,
-                    scrollbarPadding: false,
-                    customClass: {
-                        popup: 'rounded-[2rem] border-none shadow-2xl',
-                        timerProgressBar: 'bg-gradient-to-r from-emerald-400 to-cyan-500',
-                    },
-                    willClose: () => {
-                        const container = document.querySelector('.min-h-screen');
-                        container.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                        container.style.opacity = '0';
-                        container.style.transform = 'scale(0.98) translateY(-15px)';
-                        container.style.filter = 'blur(10px)';
-                        
-                        setTimeout(() => {
-                            window.location.href = "/admin/dashboard/historyBooking";
-                        }, 500);
-                    }
-                });
-            }, 1500); 
-        }
-
         // Konfirmasi Pembatalan 
         function konfirmasiBatal() {
             Swal.fire({
-                title: '<span class="text-xl font-black text-slate-800 uppercase tracking-[0.2em]">Batalkan Sesi?</span>',
-                html: '<p class="text-slate-500 font-medium text-sm px-4 leading-relaxed tracking-wide">Data yang telah Anda masukkan akan terhapus. <br> Apakah Anda yakin?</p>',
+                title: '<span class="text-xl font-black text-slate-800 uppercase tracking-[0.2em]">Keluar Dari Halaman</span>',
+                html: '<p class="text-slate-500 font-medium text-sm px-4 leading-relaxed tracking-wide">Keluar dari halaman detail booking.<br> Apakah Anda yakin?</p>',
                 icon: 'warning',
                 iconColor: '#f43f5e',
                 showCancelButton: true,
                 confirmButtonColor: '#f43f5e', 
                 cancelButtonColor: '#1e293b', 
-                confirmButtonText: 'YA, BATALKAN',
+                confirmButtonText: 'YA, KELUAR',
                 cancelButtonText: 'TIDAK, KEMBALI',
                 reverseButtons: true,
                 scrollbarPadding: false,
@@ -243,7 +131,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                        title: '<span class="text-lg font-black text-slate-800 uppercase tracking-[0.2em]">Membatalkan...</span>',
+                        title: '<span class="text-lg font-black text-slate-800 uppercase tracking-[0.2em]">Keluarr...</span>',
                         allowOutsideClick: false,
                         showConfirmButton: false,
                         borderRadius: '2.5rem',

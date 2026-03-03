@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="/image/logo/tutwuri-logo.svg">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>BOE-Sport Space | Admin Dashboard</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: #f8fafc; 
-            overflow-x: hidden; 
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #f8fafc;
+            overflow-x: hidden;
         }
 
         .calendar-animate {
@@ -63,6 +65,7 @@
         }
     </style>
 </head>
+
 <body class="flex min-h-screen">
     @include('admin.dashboard.layouts.sidebar')
 
@@ -88,16 +91,16 @@
                         </p>
                     </div>
 
-                    <button onclick="toggleSidebar()" 
+                    <button onclick="toggleSidebar()"
                         class="md:hidden p-3 bg-white rounded-xl border border-slate-100 text-[#1265A8] 
                         transition-all duration-300 ease-out
                         hover:bg-blue-50 hover:border-blue-200 hover:text-[#4292DC] 
                         hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] 
                         active:scale-95 group">
-                        
-                        <svg class="w-6 h-6 transition-transform duration-300 group-hover:rotate-180" 
-                            fill="none" 
-                            stroke="currentColor" 
+
+                        <svg class="w-6 h-6 transition-transform duration-300 group-hover:rotate-180"
+                            fill="none"
+                            stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                         </svg>
@@ -112,15 +115,19 @@
                 <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
                     <div class="p-6 border-b border-slate-50 flex items-center justify-between bg-gradient-to-r from-white to-slate-50">
                         <button id="prevMonth" class="p-2 hover:bg-white hover:shadow-md rounded-xl transition-all text-slate-400 hover:text-[#1265A8]">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
                         </button>
-                        
+
                         <div class="text-center">
                             <h3 id="currentMonthYear" class="text-xl font-bold text-slate-800 tracking-tight">Februari 2024</h3>
                         </div>
 
                         <button id="nextMonth" class="p-2 hover:bg-white hover:shadow-md rounded-xl transition-all text-slate-400 hover:text-[#1265A8]">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
                         </button>
                     </div>
 
@@ -134,9 +141,9 @@
                             <div class="text-center text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Sab</div>
                             <div class="text-center text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Min</div>
                         </div>
-                        
+
                         <div id="calendarDays" class="calendar-animate grid grid-cols-7 gap-2 md:gap-4 text-sm md:text-base font-semibold">
-                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -147,51 +154,51 @@
                         <span class="w-2 h-6 bg-[#1265A8] rounded-full"></span>
                         Booking Request
                     </h4>
-                    
+
                     <div id="scrollContainer" class="flex gap-3 overflow-x-auto pb-4 cursor-grab active:cursor-grabbing snap-x snap-mandatory no-scrollbar" style="scrollbar-width: none; -ms-overflow-style: none;">
-                    
-                    @foreach(range(1, 5) as $i)
-                    <div onclick="delayedNavigation(this, '/admin/dashboard/edit/editDataLapangan')" 
-                        class="booking-card min-w-[240px] md:min-w-[260px] p-4 rounded-2xl bg-white border border-slate-100 transition-all duration-500 ease-out snap-center shadow-sm cursor-pointer hover:shadow-md active:scale-95 select-none group relative overflow-hidden">
-                        
-                        <div class="content-wrapper transition-opacity duration-500">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-100 to-blue-50 flex items-center justify-center text-[#1265A8] shadow-sm group-hover:scale-105 transition-transform">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                    </svg>
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-xs font-black text-slate-800 truncate">User_Pemain_{{ $i }}</p>
-                                    <p class="text-[10px] text-slate-500 font-medium">Tennis Court #{{ $i }}</p>
-                                    <div class="mt-0.5 flex items-center gap-1">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-                                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Waiting Approval</p>
+
+                        @foreach($bookings as $booking)
+                        <div class="booking-card min-w-[240px] md:min-w-[260px] p-4 rounded-2xl bg-white border border-slate-100 transition-all duration-500 ease-out snap-center shadow-sm cursor-pointer hover:shadow-md active:scale-95 select-none group relative overflow-hidden" data-id="{{ $booking->id_bok }}">
+
+                            <div class="content-wrapper transition-opacity duration-500">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-100 to-blue-50 flex items-center justify-center text-[#1265A8] shadow-sm group-hover:scale-105 transition-transform">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-xs font-black text-slate-800 truncate">{{ $booking->penyewa->nama }}</p>
+                                        <p class="text-[10px] text-slate-500 font-medium">{{ $booking->lapangan->nama_lapangan }}</p>
+                                        <p class="text-[9px] text-slate-400">
+                                            {{ $booking->tanggal }} | {{ $booking->sesi_waktu }}
+                                        </p>
+                                        <div class="mt-0.5 flex items-center gap-1">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                                            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-tight">{{ ucfirst($booking->status) }}</p>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div class="flex gap-2 mt-4">
+                                    <button class="reject-btn flex-1 py-2 px-3 bg-rose-50 border border-rose-100 text-rose-500 rounded-xl text-[10px] font-bold uppercase hover:bg-rose-500 hover:text-white transition-colors">
+                                        Reject
+                                    </button>
+                                    <button class="approve-btn flex-1 py-2 px-3 bg-[#1265A8] text-white rounded-xl text-[10px] font-bold uppercase shadow-md shadow-blue-100 hover:bg-[#0d548a] transition-colors">
+                                        Approve
+                                    </button>
+                                </div>
                             </div>
 
-                            <div class="flex gap-2 mt-4">
-                                <button onclick="event.stopPropagation(); confirmAction('reject')" 
-                                    class="flex-1 py-2 px-3 bg-rose-50 border border-rose-100 text-rose-500 rounded-xl text-[10px] font-bold uppercase hover:bg-rose-500 hover:text-white transition-colors">
-                                    Reject
-                                </button>
-                                <button onclick="event.stopPropagation(); confirmAction('approve')" 
-                                    class="flex-1 py-2 px-3 bg-[#1265A8] text-white rounded-xl text-[10px] font-bold uppercase shadow-md shadow-blue-100 hover:bg-[#0d548a] transition-colors">
-                                    Approve
-                                </button>
+                            <div class="loading-overlay absolute inset-0 bg-white/80 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500 pointer-events-none">
+                                <div class="w-5 h-5 border-2 border-[#1265A8] border-t-transparent rounded-full animate-spin mb-1"></div>
+                                <span class="text-[8px] font-bold text-[#1265A8] uppercase tracking-widest">Loading...</span>
                             </div>
                         </div>
+                        @endforeach
 
-                        <div class="loading-overlay absolute inset-0 bg-white/80 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500 pointer-events-none">
-                            <div class="w-5 h-5 border-2 border-[#1265A8] border-t-transparent rounded-full animate-spin mb-1"></div>
-                            <span class="text-[8px] font-bold text-[#1265A8] uppercase tracking-widest">Loading...</span>
-                        </div>
                     </div>
-                    @endforeach
 
-                </div>
-                    
                     <p class="text-center text-[10px] text-slate-400 mt-2 font-medium italic">Geser untuk melihat request lainnya •</p>
                 </div>
 
@@ -200,7 +207,7 @@
                         <span class="w-2 h-6 bg-[#1265A8] rounded-full"></span>
                         Status Legend
                     </h4>
-                    
+
                     <ul class="space-y-4">
                         <li class="flex items-center gap-4 group p-1">
                             <div class="relative">
@@ -209,15 +216,15 @@
                             </div>
                             <div class="flex flex-col">
                                 <span class="text-sm text-slate-700 font-bold leading-none">Already Booked</span>
-                                <span class="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">Terisi</span>
+                                <span class="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">Lapangan Terisi Full</span>
                             </div>
                         </li>
 
                         <li class="flex items-center gap-4 group p-1">
-                            <span class="w-4 h-4 rounded-full bg-slate-200 border border-slate-300"></span>
+                            <span class="w-4 h-4 rounded-full bg-red-600 border border-red-700 shadow-lg shadow-red-500/50"></span>
                             <div class="flex flex-col">
-                                <span class="text-sm text-slate-700 font-bold leading-none">Schedule Not Available</span>
-                                <span class="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">Libur/Tutup</span>
+                                <span class="text-sm text-slate-700 font-bold leading-none">All courts are fully booked.</span>
+                                <span class="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">Semua Lapangan Full</span>
                             </div>
                         </li>
 
@@ -235,13 +242,13 @@
     </main>
 
     {{-- Back to Top Button --}}
-    <button id="backToTop" 
+    <button id="backToTop"
         class="fixed bottom-8 right-8 z-50 p-4 rounded-2xl bg-white/80 backdrop-blur-lg border border-slate-200 text-[#1265A8] shadow-2xl transition-all duration-500 translate-y-20 opacity-0 hover:bg-[#1265A8] hover:text-white hover:-translate-y-1 active:scale-90 group"
         aria-label="Back to Top">
-        
+
         <div class="relative">
             <div class="absolute inset-0 bg-blue-400 blur-lg opacity-0 group-hover:opacity-40 transition-opacity"></div>
-            
+
             <svg class="w-6 h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"></path>
             </svg>
@@ -280,7 +287,7 @@
                     // Siapkan posisi awal masuk dari kiri
                     calendarDays.className = "grid grid-cols-7 gap-2 md:gap-4 text-sm md:text-base font-semibold slide-in-start-left";
                 }
-                
+
                 renderCalendar();
 
                 requestAnimationFrame(() => {
@@ -292,6 +299,8 @@
             }, 300);
         }
 
+        let bookedStatus = {};
+
         function renderCalendar() {
             calendarDays.innerHTML = "";
             const year = currentDate.getFullYear();
@@ -300,28 +309,31 @@
             monthYearText.innerText = `${months[month]} ${year}`;
 
             let firstDay = new Date(year, month, 1).getDay();
-            firstDay = firstDay === 0 ? 6 : firstDay - 1; 
+            firstDay = firstDay === 0 ? 6 : firstDay - 1;
 
             const daysInMonth = new Date(year, month + 1, 0).getDate();
 
             for (let i = 0; i < firstDay; i++) {
                 const emptyDiv = document.createElement('div');
-                emptyDiv.className = "h-12 md:h-16"; 
+                emptyDiv.className = "h-12 md:h-16";
                 calendarDays.appendChild(emptyDiv);
             }
 
             for (let day = 1; day <= daysInMonth; day++) {
+
+                const dateString = `${year}-${String(month + 1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+
                 const dayElement = document.createElement('div');
-                dayElement.className = "h-12 md:h-16 flex items-center justify-center rounded-2xl transition-all cursor-pointer border border-transparent hover:scale-105 active:scale-95";
+                dayElement.className = "h-12 md:h-16 flex items-center justify-center rounded-2xl transition-all cursor-pointer border border-transparent";
+
                 dayElement.innerText = day;
 
-                // Logika Warna Dummy
-                if ([5, 12, 18, 24].includes(day)) {
-                    dayElement.classList.add('bg-emerald-500', 'text-white', 'shadow-lg', 'shadow-emerald-100');
-                } else if ([1, 2].includes(day)) {
-                    dayElement.classList.add('text-slate-300', 'bg-slate-50/50');
+                if (bookedStatus[dateString] === 'full') {
+                    dayElement.classList.add('bg-red-500', 'text-white', 'shadow-lg');
+                } else if (bookedStatus[dateString] === 'partial') {
+                    dayElement.classList.add('bg-emerald-500', 'text-white', 'shadow-lg');
                 } else {
-                    dayElement.classList.add('text-slate-800', 'bg-white', 'hover:bg-blue-50', 'hover:border-blue-200', 'shadow-sm');
+                    dayElement.classList.add('text-slate-800', 'bg-white', 'hover:bg-blue-50', 'shadow-sm');
                 }
 
                 calendarDays.appendChild(dayElement);
@@ -331,45 +343,47 @@
         prevBtn.addEventListener('click', () => updateCalendarWithAnimation('prev'));
         nextBtn.addEventListener('click', () => updateCalendarWithAnimation('next'));
 
-        renderCalendar();
+        fetch('/booking/tanggal-status')
+            .then(res => res.json())
+            .then(data => {
+                bookedStatus = data;
+                renderCalendar();
+            });
 
-        function confirmAction(type) {
-            const isApprove = type === 'approve';
-            
-            Swal.fire({
-                title: `<span class="text-xl font-black ${isApprove ? 'text-emerald-600' : 'text-rose-600'}">${isApprove ? 'APPROVE BOOKING?' : 'REJECT BOOKING?'}</span>`,
-                html: `<p class="text-slate-500 text-sm">Apakah Anda yakin ingin <b>${isApprove ? 'menyetujui' : 'menolak'}</b> permintaan jadwal ini?</p>`,
-                icon: isApprove ? 'question' : 'warning',
-                showCancelButton: true,
-                confirmButtonText: isApprove ? 'Ya, Approve!' : 'Ya, Reject!',
-                cancelButtonText: 'Batal',
-                confirmButtonColor: isApprove ? '#10B981' : '#F43F5E',
-                cancelButtonColor: '#94A3B8',
-                reverseButtons: true,
-                scrollbarPadding: false,
-                customClass: {
-                    popup: 'rounded-[2rem] border-none shadow-2xl',
-                    confirmButton: 'rounded-xl px-5 py-2.5 text-xs font-bold uppercase tracking-wider',
-                    cancelButton: 'rounded-xl px-5 py-2.5 text-xs font-bold uppercase tracking-wider'
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
+        function confirmAction(event, type) {
+            const card = event.target.closest('.booking-card');
+            const id = card.dataset.id;
+
+            const url = type === 'approve' ?
+                `/admin/booking/${id}/approve` :
+                `/admin/booking/${id}/reject`;
+
+            const method = type === 'approve' ? 'POST' : 'DELETE';
+
+            fetch(url, {
+                    method: method,
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        'Content-Type': 'application/json'
+                    },
+                    body: method === 'DELETE' ? JSON.stringify({}) : null // penting, agar Laravel menangkap method DELETE
+                })
+                .then(res => res.json())
+                .then(data => {
                     Swal.fire({
                         title: 'Berhasil!',
-                        text: `Booking telah di-${type}.`,
+                        text: data.message,
                         icon: 'success',
                         timer: 1500,
-                        showConfirmButton: false,
-                        customClass: {
-                            popup: 'rounded-[2rem]'
-                        }
+                        showConfirmButton: false
                     });
-                    
-                    console.log(`Action: ${type} dikirim ke server...`);
-                }
-            });
+                    card.remove(); // hapus kartu setelah sukses
+                })
+                .catch(err => {
+                    console.error(err);
+                    Swal.fire('Error', 'Terjadi kesalahan', 'error');
+                });
         }
-
         const slider = document.getElementById('scrollContainer');
         let isDown = false;
         let startX;
@@ -393,10 +407,10 @@
         });
 
         slider.addEventListener('mousemove', (e) => {
-            if (!isDown) return; 
+            if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2; 
+            const walk = (x - startX) * 2;
             slider.scrollLeft = scrollLeft - walk;
         });
 
@@ -415,6 +429,74 @@
             }, 600);
         }
 
+        // Event listener untuk tombol Approve & Reject
+        document.querySelectorAll('.approve-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => confirmAction(e, 'approve'));
+        });
+
+        document.querySelectorAll('.reject-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Mencegah bubbling jika card memiliki event click lain
+                e.stopPropagation();
+
+                const card = e.target.closest('.booking-card');
+                const id = card.dataset.id;
+
+                Swal.fire({
+                    title: 'Alasan Penolakan',
+                    input: 'textarea',
+                    inputLabel: 'Masukkan alasan reject',
+                    inputPlaceholder: 'Contoh: Jadwal sudah penuh atau lapangan sedang dalam perbaikan...',
+                    showCancelButton: true,
+                    confirmButtonText: 'Kirim Penolakan',
+                    cancelButtonText: 'Batal',
+                    confirmButtonColor: '#e11d48', // Warna merah rose
+                    inputValidator: (value) => {
+                        if (!value) {
+                            return 'Alasan harus diisi!'
+                        }
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Tampilkan loading saat proses kirim
+                        Swal.showLoading();
+
+                        fetch(`/admin/booking/${id}/reject`, {
+                                method: 'POST', // Gunakan POST untuk mengirim body
+                                headers: {
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    _method: 'DELETE', // Method spoofing agar Laravel tetap membacanya sebagai DELETE
+                                    reason: result.value // Ini adalah teks dari textarea
+                                })
+                            })
+                            .then(async res => {
+                                const data = await res.json();
+                                if (!res.ok) throw new Error(data.message || 'Gagal menolak booking');
+                                return data;
+                            })
+                            .then(data => {
+                                Swal.fire({
+                                    title: 'Berhasil!',
+                                    text: 'Booking telah ditolak dan alasan telah dikirim.',
+                                    icon: 'success',
+                                    timer: 2000,
+                                    showConfirmButton: false
+                                });
+                                card.remove();
+                            })
+                            .catch(err => {
+                                console.error(err);
+                                Swal.fire('Gagal', err.message, 'error');
+                            });
+                    }
+                });
+            });
+        });
+
         backToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
@@ -423,4 +505,5 @@
         });
     </script>
 </body>
+
 </html>
