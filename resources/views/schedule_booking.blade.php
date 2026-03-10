@@ -130,7 +130,7 @@
                                 <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Daftar Lapangan</p>
                             </div>
                             @foreach($allLapangan as $l)
-                            <a href="?lapangan_id={{ $l->id_lap }}&date={{ $date }}"
+                            <a href="?id_lap={{ $l->id_lap }}&date={{ $date }}"
                                 class="group/item flex items-center px-4 py-3 text-xs font-bold transition-all duration-300 
                                 {{ ($lapangan->id_lap ?? 0) == $l->id_lap 
                                     ? 'text-[#1265A8] bg-blue-50/80 pl-6' 
@@ -276,7 +276,7 @@
             const params = new URLSearchParams(window.location.search);
             params.set('date', newDate);
             // Pastikan menggunakan id_lap dari variabel PHP
-            params.set('lapangan_id', "{{ $lapangan->id_lap ?? '' }}");
+            params.set('id_lap', "{{ $lapangan->id_lap ?? '' }}");
             window.location.href = window.location.pathname + '?' + params.toString();
         }
 

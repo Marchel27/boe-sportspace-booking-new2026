@@ -7,6 +7,7 @@ use App\Models\GaleryLapangan;
 use Illuminate\Http\Request;
 use App\Models\RiwayatHarga;
 use App\Models\Penyewa;
+
 class LapanganController extends Controller
 {
 
@@ -43,8 +44,8 @@ class LapanganController extends Controller
             }
         }
 
-       return redirect()->route('lapangan.index')
-    ->with('success', 'Lapangan berhasil ditambahkan!');
+        return redirect()->route('lapangan.index')
+            ->with('success', 'Lapangan berhasil ditambahkan!');
     }
 
     public function index(Request $request)
@@ -58,31 +59,31 @@ class LapanganController extends Controller
                 $query->where('lapangan_id', $lapanganId);
             }
         }])
-        ->when($lapanganId, function ($query) use ($lapanganId) {
-            $query->whereHas('bookings', function ($q) use ($lapanganId) {
-                $q->where('lapangan_id', $lapanganId);
-            });
-        })
-        ->get();
+            ->when($lapanganId, function ($query) use ($lapanganId) {
+                $query->whereHas('bookings', function ($q) use ($lapanganId) {
+                    $q->where('lapangan_id', $lapanganId);
+                });
+            })
+            ->get();
 
-        return view('admin.dashboard.dataLapangan', compact('penyewas','lapangan'));
+        return view('admin.dashboard.dataLapangan', compact('penyewas', 'lapangan'));
     }
 
     public function destroy($id_lap)
-{
-    $lapangan = Lapangan::findOrFail($id_lap);
+    {
+        $lapangan = Lapangan::findOrFail($id_lap);
 
-    // Hapus file thumbnail dulu kalau mau bersih
-    if ($lapangan->thumbnail && file_exists(storage_path('app/public/' . $lapangan->thumbnail))) {
-        unlink(storage_path('app/public/' . $lapangan->thumbnail));
-    }
+        // Hapus file thumbnail dulu kalau mau bersih
+        if ($lapangan->thumbnail && file_exists(storage_path('app/public/' . $lapangan->thumbnail))) {
+            unlink(storage_path('app/public/' . $lapangan->thumbnail));
+        }
 
-    $lapangan->delete();
+        $lapangan->delete();
 
-    return response()->json([
-        'success' => true,
-        'message' => 'Lapangan berhasil dihapus!'
-    ]);
+        return response()->json([
+            'success' => true,
+            'message' => 'Lapangan berhasil dihapus!'
+        ]);
     }
 
     public function edit($id_lap)
@@ -92,7 +93,7 @@ class LapanganController extends Controller
         return view('admin.dashboard.edit.edit_data_lapangan', compact('lapangan'));
     }
 
-   public function update(Request $request, $id_lap)
+    public function update(Request $request, $id_lap)
     {
         $lapangan = Lapangan::findOrFail($id_lap);
 

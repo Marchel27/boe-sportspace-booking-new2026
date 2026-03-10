@@ -43,7 +43,7 @@
                         <p class="mt-3 text-sm text-gray-400 font-medium italic">Secure Your Session</p>
                     </div>
 
-                    <form action="{{route('formBooking') }}" method="POST" class="space-y-6">
+                    <form action="{{ route('booking.store') }}" method="POST" class="space-y-6">
                         @csrf
                         <div class="group relative">
                             <label class="inline-flex items-center px-2 py-0.5 mb-2 ml-1 text-[9px] font-bold text-[#1265A8] uppercase tracking-[0.15em] bg-blue-50/50 rounded-md border border-blue-100 transition-all duration-300 group-focus-within:bg-[#1265A8] group-focus-within:text-white">
@@ -100,9 +100,10 @@
                                 <select name="nama_lapangan" class="w-full px-6 py-4 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-[#1265A8] appearance-none bg-white/40 backdrop-blur-md focus:bg-white transition-all duration-500 text-sm cursor-pointer outline-none" required>
                                     <option value="" disabled selected>Pilih Lapangan</option>
                                         @foreach($lapangan as $lap)
-                                            <option value="{{ $lap->id_lap }}">
-                                                {{ $lap->nama_lapangan }}
-                                            </option>
+                                        <option value="{{ $lap->id_lap }}"
+                                            {{ isset($selectedLapangan) && $selectedLapangan == $lap->id_lap ? 'selected' : '' }}>
+                                            {{ $lap->nama_lapangan }}
+                                        </option>
                                         @endforeach
                                 </select>
                                 <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
@@ -116,7 +117,7 @@
                                 <label class="inline-flex items-center px-2 py-0.5 mb-2 ml-1 text-[9px] font-bold text-[#1265A8] uppercase tracking-[0.15em] bg-blue-50/50 rounded-md border border-blue-100 transition-all duration-300 group-focus-within:bg-[#1265A8] group-focus-within:text-white">
                                     Tanggal Main
                                 </label>
-                                <input type="date" name="tanggal" class="w-full px-6 py-4 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-[#1265A8] bg-white/40 backdrop-blur-md focus:bg-white transition-all duration-500 outline-none text-sm cursor-pointer" required>
+                                <input type="date" name="tanggal" value="{{ $selectedDate ?? '' }}" class="w-full px-6 py-4 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-[#1265A8] bg-white/40 backdrop-blur-md focus:bg-white transition-all duration-500 outline-none text-sm cursor-pointer" required>
                             </div>
 
                             <div class="group relative">
@@ -125,19 +126,19 @@
                                 </label>
                                 <select id="sesiWaktu" name="sesi_waktu" class="w-full px-6 py-4 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-[#1265A8] appearance-none bg-white/40 backdrop-blur-md focus:bg-white transition-all duration-500 text-sm cursor-pointer outline-none" required>
                                    <option value="" disabled selected>Pilih Jam</option>
-                                    <option value="08:00 - 09:00">08:00 - 09:00</option>
-                                    <option value="09:00 - 10:00">09:00 - 10:00</option>
-                                    <option value="10:00 - 11:00">10:00 - 11:00</option>
-                                    <option value="11:00 - 12:00">11:00 - 12:00</option>
-                                    <option value="13:00 - 14:00">13:00 - 14:00</option>
-                                    <option value="14:00 - 15:00">14:00 - 15:00</option>
-                                    <option value="15:00 - 16:00">15:00 - 16:00</option>
-                                    <option value="17:00 - 18:00">17:00 - 18:00</option>
-                                    <option value="18:00 - 19:00">18:00 - 19:00</option>
-                                    <option value="19:00 - 20:00">19:00 - 20:00</option>
-                                    <option value="20:00 - 21:00">20:00 - 21:00</option>
-                                    <option value="21:00 - 22:00">21:00 - 22:00</option>
-                                    <option value="23:00 - 24:00">23:00 - 24:00</option>
+                                    <option value="08:00 - 09:00" {{ ($selectedTime ?? '') == '08:00 - 09:00' ? 'selected' : '' }}>08:00 - 09:00</option>
+                                    <option value="09:00 - 10:00" {{ ($selectedTime ?? '') == '09:00 - 10:00' ? 'selected' : '' }}>09:00 - 10:00</option>
+                                    <option value="10:00 - 11:00" {{ ($selectedTime ?? '') == '10:00 - 11:00' ? 'selected' : '' }}>10:00 - 11:00</option>
+                                    <option value="11:00 - 12:00" {{ ($selectedTime ?? '') == '11:00 - 12:00' ? 'selected' : '' }}>11:00 - 12:00</option>
+                                    <option value="13:00 - 14:00" {{ ($selectedTime ?? '') == '13:00 - 14:00' ? 'selected' : '' }}>13:00 - 14:00</option>
+                                    <option value="14:00 - 15:00" {{ ($selectedTime ?? '') == '14:00 - 15:00' ? 'selected' : '' }}>14:00 - 15:00</option>
+                                    <option value="15:00 - 16:00" {{ ($selectedTime ?? '') == '15:00 - 16:00' ? 'selected' : '' }}>15:00 - 16:00</option>
+                                    <option value="17:00 - 18:00" {{ ($selectedTime ?? '') == '17:00 - 18:00' ? 'selected' : '' }}>17:00 - 18:00</option>
+                                    <option value="18:00 - 19:00" {{ ($selectedTime ?? '') == '18:00 - 19:00' ? 'selected' : '' }}>18:00 - 19:00</option>
+                                    <option value="19:00 - 20:00" {{ ($selectedTime ?? '') == '19:00 - 20:00' ? 'selected' : '' }}>19:00 - 20:00</option>
+                                    <option value="20:00 - 21:00" {{ ($selectedTime ?? '') == '20:00 - 21:00' ? 'selected' : '' }}>20:00 - 21:00</option>
+                                    <option value="21:00 - 22:00" {{ ($selectedTime ?? '') == '21:00 - 22:00' ? 'selected' : '' }}>21:00 - 22:00</option>
+                                    <option value="23:00 - 24:00" {{ ($selectedTime ?? '') == '23:00 - 24:00' ? 'selected' : '' }}>23:00 - 24:00</option>
                                 </select>
                             </div>
                         </div>
@@ -217,7 +218,8 @@ const semuaSesi = [
     "23:00 - 24:00",
 ];
 
-// Fungsi ambil booking yang sudah ada
+const selectedTime = "{{ $selectedTime ?? '' }}";
+
 async function cekSesi() {
     const tanggal = tanggalInput.value;
     const lapanganId = lapanganSelect.value;
@@ -228,10 +230,8 @@ async function cekSesi() {
         const res = await fetch(`/booking/sesi-terpakai?lapangan_id=${lapanganId}&tanggal=${tanggal}`);
         const terpakai = await res.json();
 
-        // Kosongkan select dulu
-        sesiSelect.innerHTML = '<option value="" disabled selected>Pilih Jam</option>';
+        sesiSelect.innerHTML = '<option value="" disabled>Pilih Jam</option>';
 
-        // Loop semua sesi
         semuaSesi.forEach(sesi => {
             const option = document.createElement('option');
             option.value = sesi;
@@ -241,6 +241,11 @@ async function cekSesi() {
                 option.disabled = true;
                 option.style.backgroundColor = "#e5e7eb";
                 option.textContent = sesi + " (Sudah Terpakai)";
+            }
+
+            // ⭐ AUTO SELECT DARI SCHEDULE
+            if (selectedTime === sesi) {
+                option.selected = true;
             }
 
             sesiSelect.appendChild(option);

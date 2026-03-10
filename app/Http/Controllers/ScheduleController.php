@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Lapangan;
 use App\Models\Booking;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 class ScheduleController extends Controller
 {
@@ -14,15 +13,15 @@ class ScheduleController extends Controller
         $date = $request->get('date', date('Y-m-d'));
         $allLapangan = Lapangan::all();
 
-        // 1. Pastikan mengambil lapangan_id dari request
-        $lapanganId = $request->get('lapangan_id');
+        // ambil id_lap dari URL
+        $lapanganId = $request->get('id_lap');
 
-        // 2. Cari berdasarkan id_lap (Primary Key yang Anda tentukan di Model)
+        // cari lapangan berdasarkan id_lap
         $lapangan = Lapangan::where('id_lap', $lapanganId)->first() ?? Lapangan::first();
 
         $bookedSlots = [];
+
         if ($lapangan) {
-            // 3. Gunakan $lapangan->id_lap, bukan $lapangan->id
             $bookedSlots = Booking::where('lapangan_id', $lapangan->id_lap)
                 ->whereDate('tanggal', $date)
                 ->pluck('sesi_waktu')

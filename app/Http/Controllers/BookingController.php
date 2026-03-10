@@ -72,10 +72,20 @@ class BookingController extends Controller
             ], 500);
         }
     }
-    public function index()
+    public function index(Request $request)
     {
-        $lapangan = Lapangan::all(); // Ambil semua lapangan
-        return view('formBooking', compact('lapangan')); // Kirim ke view
+        $lapangan = Lapangan::all();
+
+        $selectedLapangan = $request->id_lap;
+        $selectedDate = $request->date;
+        $selectedTime = $request->time;
+
+        return view('formBooking', compact(
+            'lapangan',
+            'selectedLapangan',
+            'selectedDate',
+            'selectedTime'
+        ));
     }
 
     public function sesiTerpakai(Request $request)

@@ -56,8 +56,19 @@
                     <div class="relative">
                         <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-[#1265A8] to-transparent rounded-full opacity-50 hidden md:block"></div>
                         <h2 class="text-2xl md:text-3xl font-black tracking-tight text-slate-800 flex items-center gap-3">
-                            <span class="bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-[#1265A8] to-[#4292DC]">History Booking</span>
+                            <span class="bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-[#1265A8] to-[#4292DC]">
+                                History Booking
+                            </span>
+                            <span class="hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-[#1265A8] border border-blue-100 uppercase tracking-widest animate-pulse">
+                                Live
+                            </span>
                         </h2>
+                        <p class="mt-1 text-slate-400 text-xs md:text-sm font-medium flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-[#1265A8]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Selamat datang di <span class="text-slate-600 font-semibold mx-1">history booking.</span>.
+                        </p>
                     </div>
                 </div>
                 @include('admin.dashboard.search.searchBar')

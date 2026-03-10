@@ -94,12 +94,16 @@
                     <div class="lg:col-span-5 space-y-8">
                         <div class="bg-slate-50/80 p-6 rounded-[2rem] border border-slate-100 space-y-5">
                             <div>
-                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Harga / Sesi</label>
-                                <div class="relative">
-                                    <span class="absolute left-5 top-1/2 -translate-y-1/2 font-black text-[#1d6fa5]">Rp</span>
-                                    <input name="harga" type="number" value="{{ $lapangan->harga }}" class="w-full pl-12 pr-6 py-4 rounded-xl border-none focus:ring-2 focus:ring-[#1d6fa5] shadow-sm font-bold" required>
-                                </div>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Harga / Sesi</label>
+                            <div class="relative">
+                                <span class="absolute left-5 top-1/2 -translate-y-1/2 font-black text-[#1d6fa5]">Rp</span>
+                                <input id="hargaInput" type="text" value="{{ number_format($lapangan->harga, 0, ',', '.') }}" 
+                                    class="w-full pl-12 pr-6 py-4 rounded-xl border-none focus:ring-2 focus:ring-[#1d6fa5] shadow-sm font-bold" 
+                                    required inputmode="numeric">
+                                
+                                <input type="hidden" name="harga" id="hargaReal" value="{{ $lapangan->harga }}">
                             </div>
+                        </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
@@ -225,6 +229,16 @@
             const fileInput = document.getElementById('fileInput');
             const preview = document.getElementById('preview');
             const uiContent = document.getElementById('ui-content');
+            const hargaInput = document.getElementById('hargaInput');
+            const hargaReal = document.getElementById('hargaReal');
+
+            hargaInput.addEventListener('input', function () {
+                let angka = this.value.replace(/\D/g, ''); // ambil angka saja
+                hargaReal.value = angka;
+
+                // format tampilan Rp
+                this.value = new Intl.NumberFormat('id-ID').format(angka);
+            });
 
             // --- LOGIKA REDIRECT DINAMIS ---
             // Simpan alamat asal saat halaman pertama kali dibuka

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +9,17 @@
     <link rel="icon" href="/image/logo/tutwuri-logo.svg">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        html { scroll-behavior: smooth; }
-        
+        html {
+            scroll-behavior: smooth;
+        }
+
         .smooth-transition {
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
     </style>
     <title>BOE-SportSpace</title>
 </head>
+
 <body class="bg-[#FFFFFF]">
     <x-layout.navbar />
     {{-- Hero Section --}}
@@ -25,9 +29,15 @@
             <img src="/image/pictures/bgImage-boe.svg" alt="bg-section" class="w-full h-full object-cover opacity-90">
             <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/20"></div>
         </div>
-        
+
         {{-- Content Container --}}
         <div class="relative z-10 flex flex-col items-center">
+            <h2
+                data-aos="fade-down"
+                data-aos-delay="100"
+                class="inline-block px-5 py-2 mb-6 text-sm font-semibold text-blue-500 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg tracking-wide uppercase">
+                Demo Version
+            </h2>
             <h1 data-aos="fade-down" data-aos-delay="200" class="text-white drop-shadow-2xl text-[45px] lg:text-[60px] font-black leading-[1.1] uppercase tracking-tighter mb-6">
                 SELAMAT DATANG <br> DI <span class="text-blue-400">BOE-SPORT SPACE</span>
             </h1>
@@ -38,10 +48,10 @@
             </p>
 
             <div data-aos="zoom-in" data-aos-delay="600" class="flex flex-col sm:flex-row gap-5">
-                <a href="/formBooking" 
+                <a href="/formBooking"
                     id="btn-booking-now"
                     class="inline-flex items-center justify-center bg-[#276AD7] text-white px-12 py-4 rounded-2xl font-bold text-xl hover:bg-black transition-all duration-300 shadow-[0_10px_30px_rgba(39,106,215,0.4)] hover:shadow-none transform hover:-translate-y-1 active:scale-95 text-center relative overflow-hidden min-w-[240px]">
-                    
+
                     <svg id="loading-spinner" class="hidden animate-spin h-6 w-6 text-white absolute" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -50,10 +60,10 @@
                     <span id="btn-text" class="transition-all duration-300">Booking Now</span>
                 </a>
 
-                <a href="/schedule_booking" 
+                <a href="/schedule_booking"
                     id="btn-schedule"
                     class="inline-flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/30 text-white px-12 py-4 rounded-2xl font-bold text-xl hover:bg-white hover:text-black transition-all duration-300 transform hover:-translate-y-1 active:scale-95 text-center relative overflow-hidden min-w-[240px]">
-                    
+
                     <svg id="schedule-spinner" class="hidden animate-spin h-6 w-6 text-current absolute" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -99,10 +109,10 @@
                         <h2 class="text-5xl lg:text-6xl font-black text-gray-800 tracking-tight leading-none">About</h2>
                         <div class="w-20 h-2 bg-[#1d6fa5] mt-6 rounded-full"></div>
                     </div>
-                    
+
                     <div class="space-y-6">
                         <p class="text-xl leading-relaxed text-gray-600 font-medium">
-                            BBPPMPV BOE Malang tidak hanya berperan sebagai pusat pengembangan pendidikan vokasi, 
+                            BBPPMPV BOE Malang tidak hanya berperan sebagai pusat pengembangan pendidikan vokasi,
                             tetapi juga menyediakan <span class="text-gray-900 font-bold underline decoration-[#1d6fa5]/30 decoration-4">fasilitas sewa lapangan olahraga</span> dengan kualitas terbaik.
                         </p>
                         <p class="text-lg leading-relaxed text-gray-500">
@@ -122,14 +132,14 @@
 
                     <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-6">
                         @php
-                            $devs = [
-                                ['name' => 'Mohammad Dirgo Marchellino', 'school' => 'SMKN 1 KRAKSAAN', 'role' => 'Backend Developer'],
-                                ['name' => 'Moh. Romsi Ramadani', 'school' => 'SMKN 1 KRAKSAAN', 'role' => 'UI/UX Designer'],
-                                ['name' => 'Ardan Ramadhan P.H', 'school' => 'SMKN 1 PURWOSARI', 'role' => 'Frontend Developer'],
-                                ['name' => 'Syafiq Labib', 'school' => 'SMKN 1 PURWOSARI', 'role' => 'UI/UX Designer'],
-                                ['name' => 'Muhammad Farchan', 'school' => 'SMKN 8 MALANG', 'role' => 'Backend Developer'],
-                                ['name' => 'Feriska Agustina Fitria', 'school' => 'SMKN 8 MALANG', 'role' => 'UI/UX Designer'],
-                            ];
+                        $devs = [
+                        ['name' => 'Mohammad Dirgo Marchellino', 'school' => 'SMKN 1 KRAKSAAN', 'role' => 'Backend Developer'],
+                        ['name' => 'Moh. Romsi Ramadani', 'school' => 'SMKN 1 KRAKSAAN', 'role' => 'UI/UX Designer'],
+                        ['name' => 'Ardan Ramadhan P.H', 'school' => 'SMKN 1 PURWOSARI', 'role' => 'Frontend Developer'],
+                        ['name' => 'Syafiq Labib', 'school' => 'SMKN 1 PURWOSARI', 'role' => 'UI/UX Designer'],
+                        ['name' => 'Muhammad Farchan', 'school' => 'SMKN 8 MALANG', 'role' => 'Backend Developer'],
+                        ['name' => 'Feriska Agustina Fitria', 'school' => 'SMKN 8 MALANG', 'role' => 'UI/UX Designer'],
+                        ];
                         @endphp
 
                         @foreach($devs as $dev)
@@ -165,17 +175,17 @@
 
         <div class="flex justify-center items-center">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 max-w-6xl w-full">
-                
+
                 @foreach ($lapangan as $item)
                 <div data-aos="fade-up" data-aos-delay="200" class="group bg-white rounded-[2rem] shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col border border-gray-100">
                     <div class="relative h-64 overflow-hidden">
-                        <img src="{{ asset('storage/' . $item->thumbnail) }}" 
+                        <img src="{{ asset('storage/' . $item->thumbnail) }}"
                             class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
                             <p class="text-[10px] font-bold uppercase tracking-widest text-[#1d6fa5]">Premium Venue</p>
                         </div>
                     </div>
-                    
+
                     <div class="p-8 flex flex-col flex-grow">
                         <div class="flex justify-between items-start mb-2">
                             <h2 class="text-2xl font-black text-gray-800 leading-tight">
@@ -197,14 +207,12 @@
                             <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
                                 <button
                                     onclick="openDescription('{{ $item->nama_lapangan }}', 'Nikmati pengalaman bermain {{ $item->nama_lapangan }} yang maksimal di lapangan berstandar tinggi. Permukaan lapangan dirancang untuk memberikan kenyamanan dan performa optimal, baik untuk pemula maupun atlet profesional. Dilengkapi pencahayaan modern dan fasilitas pendukung, memastikan setiap sesi olahraga menjadi menyenangkan dan aman. Cocok untuk latihan, kompetisi, maupun kegiatan komunitas.', '{{ asset('storage/'.$item->thumbnail) }}')"
-                                    class="text-[#1d6fa5] border border-[#1d6fa5] hover:bg-[#1d6fa5] hover:text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 text-center flex-1 sm:flex-none"
-                                >
+                                    class="text-[#1d6fa5] border border-[#1d6fa5] hover:bg-[#1d6fa5] hover:text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 text-center flex-1 sm:flex-none">
                                     Detail
                                 </button>
-                                
-                                <a href="/formBooking"
-                                    class="btn-book-now relative inline-flex items-center justify-center bg-[#1d6fa5] hover:bg-black text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 transform active:scale-95 shadow-lg shadow-blue-200 hover:shadow-none text-center flex-1 sm:flex-none overflow-hidden min-w-[120px]"
-                                >
+
+                                <a href="/formBooking?id_lap={{ $item->id_lap }}"
+                                    class="btn-book-now relative inline-flex items-center justify-center bg-[#1d6fa5] hover:bg-black text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 transform active:scale-95 shadow-lg shadow-blue-200 hover:shadow-none text-center flex-1 sm:flex-none overflow-hidden min-w-[120px]">
                                     <svg class="loading-spinner hidden animate-spin h-4 w-4 text-white absolute" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -228,16 +236,16 @@
 
         <div class="max-w-7xl mx-auto relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-20 mb-20" data-aos="fade-up" data-aos-duration="1200">
-                
+
                 <div class="md:col-span-5 flex flex-col space-y-8">
                     <div>
                         <h2 class="text-4xl font-black tracking-tighter leading-[0.9] uppercase cursor-default">
-                            BBPPMPV <br> 
+                            BBPPMPV <br>
                             <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">BOE Malang</span>
                         </h2>
                         <div class="h-1.5 w-16 bg-blue-300 mt-4 rounded-full shadow-[0_0_15px_rgba(147,197,253,0.5)]"></div>
                     </div>
-                    
+
                     <p class="text-blue-50/80 leading-relaxed text-lg font-light max-w-md">
                         Bukan sekadar pusat keunggulan vokasi, kami menyediakan ekosistem pendukung performa terbaik bagi para peserta pelatihan dan komunitas. Kami percaya bahwa ketajaman pikiran di bidang otomotif dan elektronika harus didukung oleh kebugaran fisik yang prima.
                     </p>
@@ -276,7 +284,8 @@
                             </div>
                             <div class="flex flex-col">
                                 <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-300 mb-1">Telepon</span>
-                                <span class="text-blue-50/90 font-semibold group-hover:text-white transition-colors text-sm">(0341) 123456</span>
+                                <span class="text-blue-50/90 font-semibold group-hover:text-white transition-colors text-sm">081 2321 3780</span>
+                                <span class="text-blue-50/90 font-semibold group-hover:text-white transition-colors text-sm">CP: Donny Lesmana</span>
                             </div>
                         </li>
                         <li class="flex items-center gap-5 group">
@@ -325,7 +334,7 @@
                 <p class="text-blue-200/80 text-xs font-medium tracking-widest uppercase">
                     © 2026 BOE. ALL RIGHTS RESERVED.
                 </p>
-                
+
                 <div class="flex items-center gap-4 bg-black/20 px-6 py-3 rounded-2xl border border-white/5 backdrop-blur-sm">
                     <span class="text-[10px] font-bold tracking-[0.2em] text-blue-300/40 uppercase">Powered By</span>
                     <div class="flex items-center gap-3 border-l border-white/10 pl-4">
@@ -340,13 +349,13 @@
     </section>
 
     {{-- Back to Top Button --}}
-    <button id="backToTop" 
+    <button id="backToTop"
         class="fixed bottom-8 right-8 z-50 p-4 rounded-2xl bg-white/80 backdrop-blur-lg border border-slate-200 text-[#1265A8] shadow-2xl transition-all duration-500 translate-y-20 opacity-0 hover:bg-[#1265A8] hover:text-white hover:-translate-y-1 active:scale-90 group"
         aria-label="Back to Top">
-        
+
         <div class="relative">
             <div class="absolute inset-0 bg-blue-400 blur-lg opacity-0 group-hover:opacity-40 transition-opacity"></div>
-            
+
             <svg class="w-6 h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"></path>
             </svg>
@@ -358,179 +367,179 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     <script>
-    // Initialize AOS
-    AOS.init({
-        offset: 120, 
-        delay: 0,
-        duration: 800,
-        easing: 'ease-out-back', 
-        once: false, 
-        mirror: false,
-    });
+        // Initialize AOS
+        AOS.init({
+            offset: 120,
+            delay: 0,
+            duration: 800,
+            easing: 'ease-out-back',
+            once: false,
+            mirror: false,
+        });
 
-    // Peningkatan Scroll Indicator Logic
-    window.addEventListener('scroll', function() {
-        const scrollIndicator = document.getElementById('scroll-indicator');
-        if (scrollIndicator) {
-            const scrollValue = window.scrollY;
-            
-            let opacity = 1 - (scrollValue / 200);
-            scrollIndicator.style.opacity = Math.max(0, opacity);
+        // Peningkatan Scroll Indicator Logic
+        window.addEventListener('scroll', function() {
+            const scrollIndicator = document.getElementById('scroll-indicator');
+            if (scrollIndicator) {
+                const scrollValue = window.scrollY;
 
-            // Efek Turun 
-            if (opacity > 0) {
-                scrollIndicator.style.transform = `translateY(${scrollValue * 0.5}px)`;
-                scrollIndicator.style.pointerEvents = 'auto';
-            } else {
-                scrollIndicator.style.pointerEvents = 'none'; 
+                let opacity = 1 - (scrollValue / 200);
+                scrollIndicator.style.opacity = Math.max(0, opacity);
+
+                // Efek Turun 
+                if (opacity > 0) {
+                    scrollIndicator.style.transform = `translateY(${scrollValue * 0.5}px)`;
+                    scrollIndicator.style.pointerEvents = 'auto';
+                } else {
+                    scrollIndicator.style.pointerEvents = 'none';
+                }
             }
+        });
+
+
+        let currentPreviewImg = ""; // Variabel global untuk menyimpan gambar aktif
+
+        function openDescription(title, body, imgUrl) {
+            const modal = document.getElementById('descModal');
+            const modalContent = document.getElementById('modalContent');
+
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalBody').innerText = body;
+
+            currentPreviewImg = imgUrl;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+
+            document.body.style.overflow = 'hidden';
         }
-    });
-
-
-    let currentPreviewImg = ""; // Variabel global untuk menyimpan gambar aktif
-
-    function openDescription(title, body, imgUrl) {
-        const modal = document.getElementById('descModal');
-        const modalContent = document.getElementById('modalContent');
-        
-        document.getElementById('modalTitle').innerText = title;
-        document.getElementById('modalBody').innerText = body;
-        
-        currentPreviewImg = imgUrl;
-
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        
-        setTimeout(() => {
-            modalContent.classList.remove('scale-95', 'opacity-0');
-            modalContent.classList.add('scale-100', 'opacity-100');
-        }, 10);
-
-        document.body.style.overflow = 'hidden';
-    }
 
         function handlePreview() {
-        const overlay = document.getElementById('imagePreviewOverlay');
-        const container = document.getElementById('previewContainer');
-        const fullImg = document.getElementById('previewFullImage');
+            const overlay = document.getElementById('imagePreviewOverlay');
+            const container = document.getElementById('previewContainer');
+            const fullImg = document.getElementById('previewFullImage');
 
-        fullImg.src = currentPreviewImg;
+            fullImg.src = currentPreviewImg;
 
-        overlay.classList.remove('hidden');
-        overlay.classList.add('flex');
-
-        setTimeout(() => {
-            overlay.classList.remove('opacity-0');
-            container.classList.remove('scale-90');
-            container.classList.add('scale-100');
-        }, 10);
-    }
-
-    function closePreview() {
-        const overlay = document.getElementById('imagePreviewOverlay');
-        const container = document.getElementById('previewContainer');
-
-        overlay.classList.add('opacity-0');
-        container.classList.remove('scale-100');
-        container.classList.add('scale-90');
-
-        setTimeout(() => {
-            overlay.classList.add('hidden');
-            overlay.classList.remove('flex');
-        }, 500);
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape") closePreview();
-    });
-
-    function closeDescription() {
-        const modal = document.getElementById('descModal');
-        const modalContent = document.getElementById('modalContent');
-
-        modalContent.classList.remove('scale-100', 'opacity-100');
-        modalContent.classList.add('scale-95', 'opacity-0');
-
-        setTimeout(() => {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = 'auto';
-        }, 300);
-    }
-
-    window.onclick = function(event) {
-        const modal = document.getElementById('descModal');
-        if (event.target == modal) {
-            closeDescription();
-        }
-    }
-
-    // Fungsi Helper untuk Animasi Loading
-    function handleButtonClick(e, buttonId, textId, spinnerId) {
-        e.preventDefault();
-
-        const btn = document.getElementById(buttonId);
-        const btnText = document.getElementById(textId);
-        const spinner = document.getElementById(spinnerId);
-        const targetUrl = btn.getAttribute('href');
-
-        if (!btn || !btnText || !spinner) return;
-
-        btn.classList.add('pointer-events-none', 'brightness-90');
-        btn.style.transform = "scale(0.95)";
-
-        btnText.classList.add('opacity-0', 'scale-90', 'translate-y-2');
-
-        setTimeout(() => {
-            spinner.classList.remove('hidden');
-            spinner.classList.add('block');
+            overlay.classList.remove('hidden');
+            overlay.classList.add('flex');
 
             setTimeout(() => {
-                window.location.href = targetUrl;
-            }, 800);
-        }, 150);
-    }
+                overlay.classList.remove('opacity-0');
+                container.classList.remove('scale-90');
+                container.classList.add('scale-100');
+            }, 10);
+        }
 
-    const scheduleBtn = document.getElementById('btn-schedule');
-    if (scheduleBtn) {
-        scheduleBtn.addEventListener('click', function(e) {
-            handleButtonClick(e, 'btn-schedule', 'schedule-text', 'schedule-spinner');
+        function closePreview() {
+            const overlay = document.getElementById('imagePreviewOverlay');
+            const container = document.getElementById('previewContainer');
+
+            overlay.classList.add('opacity-0');
+            container.classList.remove('scale-100');
+            container.classList.add('scale-90');
+
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                overlay.classList.remove('flex');
+            }, 500);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closePreview();
         });
-    }
 
-    const bookingBtn = document.getElementById('btn-booking-now');
-    if (bookingBtn) {
-        bookingBtn.addEventListener('click', function(e) {
-            handleButtonClick(e, 'btn-booking-now', 'btn-text', 'loading-spinner');
-        });
-    }
+        function closeDescription() {
+            const modal = document.getElementById('descModal');
+            const modalContent = document.getElementById('modalContent');
 
-    document.querySelectorAll('.btn-book-now').forEach(button => {
-        button.addEventListener('click', function(e) {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('descModal');
+            if (event.target == modal) {
+                closeDescription();
+            }
+        }
+
+        // Fungsi Helper untuk Animasi Loading
+        function handleButtonClick(e, buttonId, textId, spinnerId) {
             e.preventDefault();
-            
-            const btn = this;
-            const label = btn.querySelector('.btn-label');
-            const spinner = btn.querySelector('.loading-spinner');
+
+            const btn = document.getElementById(buttonId);
+            const btnText = document.getElementById(textId);
+            const spinner = document.getElementById(spinnerId);
             const targetUrl = btn.getAttribute('href');
 
-            btn.classList.add('pointer-events-none', 'opacity-90');
+            if (!btn || !btnText || !spinner) return;
+
+            btn.classList.add('pointer-events-none', 'brightness-90');
             btn.style.transform = "scale(0.95)";
 
-            label.classList.add('opacity-0', 'translate-y-2');
-            
+            btnText.classList.add('opacity-0', 'scale-90', 'translate-y-2');
+
             setTimeout(() => {
                 spinner.classList.remove('hidden');
-                
+                spinner.classList.add('block');
+
                 setTimeout(() => {
                     window.location.href = targetUrl;
-                }, 800); 
-            }, 100);
-        });
-    });
+                }, 800);
+            }, 150);
+        }
 
-    // Logika Back to Top
+        const scheduleBtn = document.getElementById('btn-schedule');
+        if (scheduleBtn) {
+            scheduleBtn.addEventListener('click', function(e) {
+                handleButtonClick(e, 'btn-schedule', 'schedule-text', 'schedule-spinner');
+            });
+        }
+
+        const bookingBtn = document.getElementById('btn-booking-now');
+        if (bookingBtn) {
+            bookingBtn.addEventListener('click', function(e) {
+                handleButtonClick(e, 'btn-booking-now', 'btn-text', 'loading-spinner');
+            });
+        }
+
+        document.querySelectorAll('.btn-book-now').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const btn = this;
+                const label = btn.querySelector('.btn-label');
+                const spinner = btn.querySelector('.loading-spinner');
+                const targetUrl = btn.getAttribute('href');
+
+                btn.classList.add('pointer-events-none', 'opacity-90');
+                btn.style.transform = "scale(0.95)";
+
+                label.classList.add('opacity-0', 'translate-y-2');
+
+                setTimeout(() => {
+                    spinner.classList.remove('hidden');
+
+                    setTimeout(() => {
+                        window.location.href = targetUrl;
+                    }, 800);
+                }, 100);
+            });
+        });
+
+        // Logika Back to Top
         const backToTopBtn = document.getElementById('backToTop');
 
         window.addEventListener('scroll', () => {
@@ -565,9 +574,9 @@
                         </svg>
                     </button>
                 </div>
-                
+
                 <div class="h-1.5 w-16 bg-[#1d6fa5] rounded-full mb-6"></div>
-                
+
                 <p id="modalBody" class="text-gray-600 leading-relaxed text-lg font-medium">
                     Deskripsi akan muncul di sini...
                 </p>
@@ -589,33 +598,33 @@
         </div>
     </div>
 
-    <div id="imagePreviewOverlay" 
+    <div id="imagePreviewOverlay"
         class="fixed inset-0 z-[150] hidden items-center justify-center bg-black/40 backdrop-blur-xl p-4 transition-all duration-500 ease-in-out opacity-0"
         onclick="closePreview()">
-        
-        <div class="relative max-w-5xl w-full transform scale-90 transition-transform duration-500 ease-out" 
+
+        <div class="relative max-w-5xl w-full transform scale-90 transition-transform duration-500 ease-out"
             id="previewContainer"
-            onclick="event.stopPropagation()"> 
-            <button onclick="closePreview()" 
+            onclick="event.stopPropagation()">
+            <button onclick="closePreview()"
                 class="absolute top-6 right-6 z-[160] group flex items-center justify-center">
-                
+
                 <div class="absolute inset-0 bg-white/10 backdrop-blur-md border border-white/20 rounded-full scale-100 group-hover:scale-110 group-active:scale-95 transition-all duration-300 shadow-2xl"></div>
-                
+
                 <div class="relative p-3 text-white group-hover:text-red-400 transition-colors duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" 
-                        class="h-7 w-7 transform group-hover:rotate-90 transition-transform duration-500 ease-out" 
-                        fill="none" 
-                        viewBox="0 0 24 24" 
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-7 w-7 transform group-hover:rotate-90 transition-transform duration-500 ease-out"
+                        fill="none"
+                        viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </div>
             </button>
-            
+
             <div class="overflow-hidden rounded-[2rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 bg-gray-900">
-                <img id="previewFullImage" 
-                    src="/image/pictures/tenis-boe.svg" 
-                    alt="Full Preview" 
+                <img id="previewFullImage"
+                    src="/image/pictures/tenis-boe.svg"
+                    alt="Full Preview"
                     class="mx-auto max-h-[80vh] w-full object-contain">
             </div>
 
@@ -625,4 +634,5 @@
         </div>
     </div>
 </body>
+
 </html>

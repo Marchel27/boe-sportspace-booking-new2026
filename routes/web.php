@@ -9,6 +9,8 @@
     use App\Http\Controllers\RiwayatController;
     use App\Http\Controllers\DashboardController;
     use App\Http\Controllers\HomeController;
+    use App\Http\Controllers\KontrolJadwalController;
+
 
     Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
     Route::post('/admin/login', [AdminsController::class, 'login'])->name('admin.login');
@@ -16,11 +18,6 @@
     Route::get('/', function () {
         return view('home');
     })->name('home');
-
-
-    Route::get('/schedule_booking', function () {
-        return view('schedule_booking');
-    })->name('schedule_booking');
 
     Route::get('/about', function () {
         return Redirect::route('/#about');
@@ -107,7 +104,7 @@
     Route::delete('/admin/dashboard/lapangan/{id}', [LapanganController::class, 'destroy'])->name('lapangan.destroy');
 
     Route::get('/formBooking', [BookingController::class, 'index'])
-    ->name('formBooking');
+        ->name('formBooking');
 
     Route::get('/login', function () {
         return view('admin.formLogin'); // sesuaikan dengan view login admin kamu
@@ -161,3 +158,10 @@
     Route::get('/booking/tanggal-status', [BookingController::class, 'tanggalStatus']);
 
     Route::get('/schedule_booking', [App\Http\Controllers\ScheduleController::class, 'index'])->name('schedule.index');
+
+    // Hapus kata 'Admin' karena file ada di folder Controllers utama
+    Route::get('/admin/dashboard/kontrolJadwal', [KontrolJadwalController::class, 'index'])->name('admin.dashboard.kontrolJadwal');
+
+    Route::post('/admin/block-jadwal',[KontrolJadwalController::class,'block'])->name('admin.block');
+
+    Route::get('/admin/kontrol-jadwal/cek-sesi', [KontrolJadwalController::class, 'cekSesiTerpakai'])->name('admin.cekSesi');
