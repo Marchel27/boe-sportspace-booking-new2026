@@ -80,4 +80,12 @@ class KontrolJadwalController extends Controller
 
         return response()->json($sesiTerpakai);
     }
+
+    public function destroy($id)
+    {
+        $booking = Booking::findOrFail($id);
+        $booking->delete();
+
+        return back()->with('success', 'Jadwal berhasil dihapus');
+    }
 }

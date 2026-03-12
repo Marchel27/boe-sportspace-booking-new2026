@@ -126,6 +126,7 @@
                         <th class="p-4 text-[10px] font-bold text-slate-400 uppercase">Tanggal</th>
                         <th class="p-4 text-[10px] font-bold text-slate-400 uppercase">Sesi</th>
                         <th class="p-4 text-[10px] font-bold text-slate-400 uppercase text-center">Status</th>
+                        <th class="p-4 text-[10px] font-bold text-slate-400 uppercase text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -180,6 +181,23 @@
 
                         </td>
 
+                        <td class="p-4 text-center">
+                            <form action="{{ route('admin.kontrolJadwal.delete', $booking->id_bok) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit"
+                                    class="group p-2.5 bg-slate-50 hover:bg-red-50 text-slate-400 hover:text-red-600 rounded-xl transition-all duration-300 border border-slate-100 hover:border-red-100 shadow-sm">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+
+                                </button>
+                            </form>
+                        </td>
+
                     </tr>
 
                     @empty
@@ -213,6 +231,44 @@
         </div>
 
     </main>
+
+    <div id="deleteModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+
+        <div class="relative bg-white rounded-3xl p-8 w-full max-w-sm shadow-2xl transform transition-all scale-95 border border-slate-100">
+            <div class="text-center">
+                <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-red-50 mb-6">
+                    <div class="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center animate-pulse">
+                        <svg class="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="text-xl font-black text-slate-800">Hapus Jadwal?</h3>
+                <p class="text-sm text-slate-500 mt-3 leading-relaxed">Tindakan ini akan menghapus data secara permanen dari sistem dashboard Anda.</p>
+            </div>
+
+            <div class="mt-8 flex gap-3">
+                <button onclick="closeModal()" class="flex-1 px-5 py-3.5 bg-slate-100 text-slate-600 rounded-2xl font-bold hover:bg-slate-200 transition-all active:scale-95">
+                    Batal
+                </button>
+                <button onclick="executeDelete()" class="flex-1 px-5 py-3.5 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-2xl font-bold shadow-lg shadow-red-200 hover:shadow-red-300 transition-all active:scale-95">
+                    Ya, Hapus
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastSuccess" class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[110] hidden">
+        <div class="bg-slate-900 text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700/50">
+            <div class="bg-green-500 rounded-full p-1">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <span class="text-sm font-bold tracking-wide">Data berhasil dihapus dari tampilan</span>
+        </div>
+    </div>
 
     <button id="backToTop" class="fixed bottom-8 right-8 z-50 p-4 rounded-2xl bg-white/80 backdrop-blur-lg border border-slate-200 text-[#1265A8] shadow-2xl transition-all duration-500 translate-y-20 opacity-0 hover:bg-[#1265A8] hover:text-white group">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -279,6 +335,59 @@
         // Jalankan fungsi saat lapangan atau tanggal diubah
         lapanganSelect.addEventListener('change', updateSesiTersedia);
         tanggalInput.addEventListener('change', updateSesiTersedia);
+
+        let rowToDelete = null;
+
+        function openDeleteModal(btn) {
+            rowToDelete = btn.closest('tr'); // Ambil baris tabelnya
+            const modal = document.getElementById('deleteModal');
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            // Trigger animasi scale (sedikit delay agar class flex terpasang dulu)
+            setTimeout(() => {
+                modal.querySelector('.transform').classList.remove('scale-95');
+                modal.querySelector('.transform').classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('deleteModal');
+            modal.querySelector('.transform').classList.add('scale-95');
+            modal.querySelector('.transform').classList.remove('scale-100');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 200);
+        }
+
+        function executeDelete() {
+            closeModal();
+
+            if (rowToDelete) {
+                // Efek transisi baris mengecil dan memudar
+                rowToDelete.style.transition = "all 0.4s ease";
+                rowToDelete.style.opacity = "0";
+                rowToDelete.style.transform = "scale(0.95)";
+
+                setTimeout(() => {
+                    rowToDelete.remove();
+                    showToast();
+                }, 400);
+            }
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toastSuccess');
+            toast.classList.remove('hidden');
+            toast.classList.add('animate-bounce-short');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
     </script>
 </body>
 

@@ -165,3 +165,5 @@
     Route::post('/admin/block-jadwal',[KontrolJadwalController::class,'block'])->name('admin.block');
 
     Route::get('/admin/kontrol-jadwal/cek-sesi', [KontrolJadwalController::class, 'cekSesiTerpakai'])->name('admin.cekSesi');
+
+    Route::delete('/admin/kontrol-jadwal/{id}', [KontrolJadwalController::class, 'destroy'])->name('admin.kontrolJadwal.delete');
